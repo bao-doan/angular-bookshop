@@ -4,27 +4,22 @@
       <h5 class="mb-3">Create New Category (Genre)</h5>
       <div class="form-group">
         <label for="formAddCategory">Name</label>
-        <input type="text" id="formAddCategory" name="formAddCategory" class="form-control myInput-elegant-2" placeholder="">
+        <input [(ngModel)]="name" type="text" id="formAddCategory" name="formAddCategory" class="form-control myInput-elegant-2" placeholder="">
       </div>
-      <button class="btn btn-success d-block ml-auto">
+      <button (click)="addGenre(name)" [disabled]="!name" class="btn btn-success d-block ml-auto">
         <i class="fas fa-plus"></i> Create</button>
     </div>
     <div class="col-12 col-md-4 mb-3">
       <div class="d-flex flex-row justify-content-between align-items-center mb-3">
         <span class="h5 mb-0">Master List</span>
-        <button class="btn btn-primary">
+        <button (click)="getGenres()" class="btn btn-primary">
           <i class="fas fa-sync-alt"></i> Refresh</button>
       </div>
 
-      <ul class="list-group list-unstyled border-0">
-        <li class="d-flex flex-row justify-content-between align-items-center">
-          <!-- <span class="">
-                      <button class="btn btn-sm" title="Edit"><i class="far fa-edit"></i></button>
-                      
-                  </span> -->
-
-          <span class="">Waiting for binding from a API to this list item abc xyz</span>
-          <button class="btn btn-sm" title="Remove">
+      <ul *ngIf="genres" class="list-group list-unstyled border-0">
+        <li *ngFor="let genre of genres" class="d-flex flex-row justify-content-between align-items-center">
+          <span (click)="onSelect(genre)" class="">{{genre.name}}</span>
+          <button (click)="onSelectDelete(genre)" class="btn btn-sm" title="Remove" data-toggle="modal" data-target="#modalDelete" >
             <i class="fas fa-times"></i>
           </button>
         </li>
@@ -36,14 +31,33 @@
         <button class="btn btn-primary">
           <i class="fas fa-check"></i> Update</button>
       </div>
-      <div class="form-group">
+      <div *ngIf="selectedGenre" class="form-group">
         <label for="formAddCategory">Category:</label>
-        <input type="text" id="formAddCategory" name="formAddCategory" class="form-control myInput-elegant-2" placeholder="">
-
+        <input [(ngModel)]="selectedGenre.name" type="text" id="formAddCategory" name="formAddCategory" class="form-control myInput-elegant-2" placeholder="">
+        <p>Id: {{selectedGenre._id}}</p>
+        <p>Created date: {{selectedGenre.create_date}}</p>
       </div>
-      <p>Id: 123456</p>
-      <p>Title: Lorem ipsum ador</p>
-      <p>Created date: 01/01/2010</p>
+      
+    </div>
+  </div>
+</div>
+<!-- Modal: DELETE -->
+<div id="modalDelete" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure want to delete?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="deleteGenre(selectedDelete)" data-dismiss="modal" type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep</button>
+      </div>
     </div>
   </div>
 </div>

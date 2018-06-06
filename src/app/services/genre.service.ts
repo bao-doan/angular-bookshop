@@ -14,7 +14,8 @@ const httpOptions = {
 })
 
 export class GenreService {
-  ten:string;
+  name:string;
+  ten: string;
   genresUrl = 'http://green-web-bookstore.herokuapp.com/api/genres';
   
   constructor(private http: HttpClient) { }
@@ -37,8 +38,14 @@ export class GenreService {
   // return of(HEROES.find(hero => hero.id === id));
   // return this.http.get<Genre[]>(this.genresUrl).find(hero => hero.id === id);
   // }
-  onType(): boolean {
-    return !this.ten;
+  onType(ten): boolean {
+    // return !this.name;
+    if (this.ten.length == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   } // Note: this onType() makes button disabled when there is no value in Input
 
 }
