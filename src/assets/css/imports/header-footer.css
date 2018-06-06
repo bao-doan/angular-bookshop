@@ -1,0 +1,431 @@
+/* Header | Footer | Body Buffer */
+body {
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-family: 'Abel', sans-serif; */
+    /* font-family: 'Cantarell', sans-serif; */
+    /* font-family: 'Cabin', sans-serif; */
+}
+@media (max-width: 576px) {
+    .myCollapse-sm-center {
+        text-align: center;
+    };
+    .myCollapse-sm-left {
+        text-align: left;
+    };
+    .myCollapse-filter {
+        display: none;
+    }
+    .myCardBoard {
+        display: flex;
+        justify-content: center; 
+        /* Use: This let product cards play center when SM, play left when above SM */
+    }
+    
+}
+.myBody-buffer {
+    height: 50vh; /* body buffer for very-short-content pages*/
+}
+.myBrand-logo {
+    font-family: monoton;
+    font-size: 1.875rem; 
+    /* ~30px | root: 16px */
+    color: rgba(0,0,0,.8);
+}
+.myBrand-logo:hover {
+   text-decoration: none;
+   color: #FF6000;
+   border: 1px 0px solid #FF6000;
+   transition: all ease-in-out 0.3s;
+}
+.myBrand-logo::before {
+    content: '';
+    width: 50px; height: 50px;
+    background: #FF6000;
+}
+.myBrand-logo:active {
+    color: #00D5FF;
+    font-style: italic;
+    -webkit-transition: all ease-in-out 0.3s;
+    -o-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+.myFooter-social a {
+    margin: 10px;
+    font-size: 18px;
+    color: rgba(0,0,0,.75);
+}
+.myFooter-policy a,span {
+    margin-right: 10px;
+    color: black;
+}
+.myFooter-social a:hover {
+    color: #FF6000; 
+    transition: all ease-in-out 0.3s;
+    -webkit-transition: all ease-in-out 0.3s;
+    -o-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+}
+.myFooter-brand a { text-decoration: none; color: rgba(0,0,0,.75); }
+
+.myInput-elegant {
+    border-width: 0px 0px 1px 0px;
+    border-radius: 0px;
+    background: transparent;
+}
+.myInput-elegant:hover {
+    font-style: italic;
+}
+.myInput-elegant-2, .myInput-elegant-3 {
+    border-width: 0px;
+    border-radius: 0px;
+    background: var(--myBlackOpa3);
+    box-sizing: border-box;
+}
+.myInput-elegant-2:focus {
+    border: 1px solid var(--myBlackOpa2);
+    background: white;
+}
+.myInput-elegant-3:focus {
+    border-bottom: 1px solid var(--myBlackOpa2);
+    background: white;
+}
+.myBtn-icon {
+    border-width: 0px;
+    border-radius: 0px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+}
+.nav-item *:hover {
+    font-weight: 500;
+}
+.myText-indent {
+    text-indent: 20px;
+}
+.myText-padding-left {
+    padding-left: 20px;
+}
+.myText-margin-left {
+    margin-left: 20px;
+}
+.myText-link {
+    color: var(--myBlueGray2);
+    text-decoration: underline;
+}
+.myText-link:hover {
+    color: var(--myOrange);
+}
+.myText-subtitle {
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.85;
+}
+.myDropdown .dropdown-menu {
+    border: none;
+    background: var(--myBlueGray2);
+}
+.myDropdown .dropdown-menu a{
+    color: rgba(255,255,255,.85);
+    background: var(--myBlueGray2);
+}
+.myDropdown .dropdown-menu a:hover{
+    color: rgba(255,255,255,1);
+    background: slategray;
+}
+.modal * {
+    border-radius: 0px;
+}
+/* Dropdown Cart */
+.myDropdown-cart {
+    z-index: 10000;
+    width: 330px;
+}
+.myCart-img img {
+    width: 70px;
+    height: auto;
+}
+.myCart-name, .myCart-name a {
+    color: var(--myBlackText);
+}
+.myCart-name, .myCart-price {
+    /* width: 150px; */
+}
+.myCart-product {
+    border-bottom: 1px solid var(--myBlackOpa2);
+}
+.myCart-scroll .myCart-product {
+    flex: 0 0 auto;
+}
+.myCart-scroll {
+    height: 260px;
+    overflow-Y: scroll;
+    border: 1px solid var(--myBlackOpa2);
+}
+.myCart-item {
+}
+/* Text | Title | Paragraph */
+.myTitle {
+    /* background-color: var(--myBlueGray2); */
+    color: var(--myBlueGray2);
+}
+#map {
+    width: 400px;
+    height: 400px;
+}
+.myBreadcrum {
+    background: rgba(0,0,0,0);
+    padding-left: 0px;
+}
+.myBreadcrum li:not(.active) a {
+    color: var(--myBlueGray2);
+}
+.mySignup {
+    border-radius: 0px;
+    border: 1px solid var(--myBlackOpa2);
+}
+.myBackground {
+}
+.myBg-new {background-color: olivedrab}
+.myBg-new2 {background-color: var(--myBlueGray2);}
+.myText-new2 * {color: white;}
+.myText-new2 * * {color: white;}
+.myText-new2 * *:hover {color: var(--myOrange);}
+
+.myBg-new a:hover {color: #FF4347}
+.myText-new a, .myText-new button, .myText-new i,  .myText-new input::placeholder {color: oldlace !important;}
+.myText-new input::placeholder {
+    text-align: center;
+}
+.myText-new input {
+    background: rgba(255,255,255,0);
+    color: white;
+}
+.myText-new input:focus {
+    background: rgba(255,255,255,0);
+    color: white;
+}
+
+.myCarousel img {
+    min-height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+.myTitle-home {
+    color: white;
+    background-color: var(--myBlueGray2);
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+}
+.myCard {
+    border-radius: 0px;
+    border: none;
+}
+.myCard h5 a, .myCard h6 a {
+    text-decoration: none;
+    color: black;
+}
+.myBorder-bottom {
+    border-bottom: 1px solid var(--myBlackOpa2);
+}
+/* test site */
+.myCard-upper {
+    position: relative;
+    /* width: 100%; */
+}
+  
+.myCard-upper-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+
+}
+.myCard-upper-img img{
+    transform: scale(1.0);
+    transition: transform ease 0.4s;
+}
+.myCard-upper:hover .myCard-upper-img img {
+    transform: scale(1.1);
+    transition: transform ease 0.3s;
+}
+  
+.myCard-upper-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    transition: .5s ease;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.myCard-upper:hover .myCard-upper-overlay .myCard-btn {
+    display: block;
+}
+.myCard-promote {
+    width: 40px;height: 40px;
+    padding: 6px 0;
+    border: 0px solid transparent;
+    border-radius: 25px;
+    border-radius: 25px;
+    margin-top: 2px;
+    margin-left: 2px;
+    text-align: center;
+}
+.myCard-btn {
+    display: none;
+    width: 40px;height: 40px;
+    padding: 6px 0;
+    border: 0px solid transparent;
+    border-radius: 25px;
+    margin-top: 2px;
+    margin-left: 2px;
+    text-align: center;
+}
+.form-check-label:hover {
+    cursor: pointer;
+}
+.myCard-outofstock {
+    /* Inject this class with .myCard-upper when product is out of stock */
+}
+.myCard-upper.myCard-outofstock:hover .myCard-upper-overlay {
+    background: rgb(255,255,255);
+}
+.myCard-upper.myCard-outofstock:hover .myCard-outofstock-text {
+    display: block;
+    text-align: center;
+}
+.myCard-upper.myCard-outofstock:hover .myCard-promote, .myCard-upper.myCard-outofstock:hover .myCard-btn {
+    display: none;
+}
+.myCard-outofstock-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: red;
+    display: none;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+.myCarousel-img-view {
+    
+}
+.myCarousel-img-nav div {
+    width: 24%;
+    margin-left: 1%;
+    margin-bottom: 0.25rem;
+    border: 1px solid var(--myColorD2);
+}
+.myCarousel-img-nav div:hover {
+    border: 1px solid var(--myOrange);
+}
+.myTab-nav a.nav-link {
+    color: var(--myBlackOpa1);
+}
+.myTab-nav a.nav-link.active {
+    color: var(--myOrange);
+    font-weight: 500;
+}
+.myPost p {
+    text-align: justify;
+}
+.myFigure {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+.myFigure-img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 50%;
+}
+.myFigure-img {
+    height: 100%;
+    width: 100%;
+}
+.myFigure-img img {
+    height: 100%;
+    width: auto;
+}
+.myFigure-caption {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* height: 40px; */
+    background: var(--myBlackOpa1);
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.myReview-user-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+.myReview-user-comment {
+    padding-left: 50px;
+}
+.myReview-level-1 p, .myReview-level-2 p {
+    text-align: justify;
+}
+.myReview-level-2 {
+    padding-left: 60px;
+}
+.myPill-nav .nav-link {
+    background: transparent;
+    color: var(--myBlackOpa1);
+}
+.myPill-nav .nav-link.active {
+    background: var(--myBlueGray2);
+    color: white;
+    border-radius: 0px;
+}
+.myImg-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.myImg-thumbnail {
+    width: 70px;
+    height: 70px;
+}
+.myInput-cart-quantity {
+    width: 70px;
+    /* height: 30px; */
+    border-radius: 0px;
+    box-shadow: transparent;
+}
+.myInput-cart-quantity:focus {
+    box-shadow: var(--myOrange);
+}
+.myTable-product {
+    max-width: 200px;
+    min-width: 150px;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+.myDropdown-side {
+    position: relative;
+}
+.myDropdown-side-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
