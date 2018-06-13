@@ -1,0 +1,254 @@
+<!-- Main Content -->
+<div class="container-fluid myTitle py-3">
+  <div class="container">
+    <div class="row flex-column">
+      <h3 class="sr-only">PRODUCT LIST</h3>
+      <nav aria-label="breadcrumb myBreadcrum">
+        <ol class="breadcrumb myBreadcrum">
+          <li class="breadcrumb-item">
+            <a href="../index.html">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Product list</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <!-- Colllape filter -->
+    <div class="col-12 col-sm-4 col-md-3 mb-3 bg-light">
+      <div class="row">
+        <div class="col-12 bg-secondary">
+          <a href="#" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
+            data-target="#collapseFilter" aria-controls="collapseFilter" aria-expanded="false">
+            <span class="text-white">
+              <b>Filter by</b>
+            </span>
+            <i class="fas fa-angle-down fs-23 text-white"></i>
+          </a>
+        </div>
+      </div>
+      <div class="row mx-0">
+        <div class="col-12 px-0">
+          <div class="collapse show" id="collapseFilter">
+            <!-- Sub collapse: categories -->
+            <div class="row mx-0">
+              <div class="col-12 px-0">
+                <a class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
+                  
+                  data-toggle="collapse" href="#collapseCategories" role="button" aria-expanded="false" aria-controls="collapseCategories">
+                  <span class="myText-padding-left">
+                    <b>Categories</b>
+                  </span>
+                  <i class="fas fa-angle-down"></i>
+                </a>
+              </div>
+              <div class="col-12 px-0">
+                <div class="collapse show myCollapse-filter myText-margin-left myBorder-bottom" id="collapseCategories">
+                  <a class="myText-link-2 d-block mb-1" href="">All</a>
+                  <a class="myText-link-2 d-block mb-1" href="">Macbook</a>
+                  <a class="myText-link-2 d-block mb-1" href="">Laptop</a>
+                  <a class="myText-link-2 d-block mb-1" href="">Iphone</a>
+                  <a class="myText-link-2 d-block mb-1" href="">Ipad</a>
+                  <a class="myText-link-2 d-block mb-1" href="">Smartphone</a>
+                </div>
+              </div>
+            </div>
+            <!-- Sub collapse: brands -->
+            <div class="row mx-0">
+              <div class="col-12 px-0">
+                <a href="#collapseBrand" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
+                  data-target="#collapseBrand" aria-controls="collapseBrand" aria-expanded="false">
+                  <span class="myText-margin-left">
+                    <b>Brands</b>
+                  </span>
+                  <i class="fas fa-angle-down"></i>
+                </a>
+              </div>
+              <div class="col-12 px-0">
+                <div class="collapse show myCollapse-filter myText-margin-left myBorder-bottom" id="collapseBrand">
+                    <a class="myText-link-2 d-block mb-1" href="">Apple</a>
+                    <a class="myText-link-2 d-block mb-1" href="">Asus</a>
+                    <a class="myText-link-2 d-block mb-1" href="">Dell</a>
+                    <a class="myText-link-2 d-block mb-1" href="">Samsung</a>
+                    <a class="myText-link-2 d-block mb-1" href="">Sony</a>
+                </div>
+              </div>
+            </div>
+            <!-- Sub collapse: price ranges -->
+            <div class="row mx-0">
+              <div class="col-12 px-0">
+                <a href="#collapsePrice" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
+                  data-target="#collapsePrice" aria-controls="collapsePrice" aria-expanded="false">
+                  <span class="myText-margin-left">
+                    <b>Prices</b>
+                  </span>
+                  <i class="fas fa-angle-down"></i>
+                </a>
+              </div>
+              <div class="col-12 px-0">
+                <div class="collapse show myCollapse-filter myText-margin-left myBorder-bottom" id="collapsePrice">
+                    <a class="myText-link-2 d-block mb-1" href="">$0 - $100</a>
+                    <a class="myText-link-2 d-block mb-1" href="">$100 - $1000</a>
+                    <a class="myText-link-2 d-block mb-1" href="">$1000 - $2000</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Cards of Products  -->
+    <div class="col-12 col-sm-8 col-md-9 mb-3 bg-light d-flex flex-column justify-content-between">
+      <div class="row myCardBoard mt-2 mb-2">
+        <div class="col-12 mb-2">
+          <h5>All Products</h5>
+          <p class="text-muted">Displaying 4 items</p>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="myCard-product">
+            <div class="myCard-upper myCursor-pointer">
+              <div class="myCard-upper-img">
+                <img class="card-img rounded-0" src="../assets/img/item/item-camera-1.jpg" alt="product">
+              </div>
+              <div class="myCard-upper-overlay">
+                <span class="myCard-promote btn-danger">New</span>
+                <div class="d-flex justify-content-around">
+                  <a href="../assets/img/item/item-camera-1.jpg" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+                    <i class="far fa-image"></i>
+                  </a>
+                  <a href="#" class="myCard-btn btn-danger" title="Add to Cart" data-toggle="tooltip">
+                    <i class="fas fa-cart-plus"></i>
+                  </a>
+                  <span class="myCard-outofstock-text">Out of stock</span>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <h6 class="text-center text-small myCursor-pointer">
+                <a href="" class="myText-link" routerLink="/product-detail">Canon EOS</a>
+              </h6>
+              <h6 class="text-center">
+                <s class="text-danger">$500</s> $450</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="myCard-product">
+            <div class="myCard-upper myCursor-pointer myCard-outofstock">
+              <div class="myCard-upper-img">
+                <img class="card-img rounded-0" src="../assets/img/item/item-camera-1.jpg" alt="product">
+              </div>
+              <div class="myCard-upper-overlay">
+                <span class="myCard-promote btn-danger">New</span>
+                <div class="d-flex justify-content-around">
+                  <a href="../assets/img/item/item-camera-1.jpg" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+                    <i class="far fa-image"></i>
+                  </a>
+                  <a href="#" class="myCard-btn btn-danger" title="Add to Cart" data-toggle="tooltip">
+                    <i class="fas fa-cart-plus"></i>
+                  </a>
+                  <span class="myCard-outofstock-text">Out of stock</span>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <h6 class="text-center text-small myCursor-pointer">
+                <a href="" class="myText-link" routerLink="/product-detail">Canon EOS</a>
+              </h6>
+              <h6 class="text-center">
+                <s class="text-danger">$500</s> $450</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="myCard-product">
+            <div class="myCard-upper">
+              <div class="myCard-upper-img">
+                <img class="card-img rounded-0" src="../assets/img/item/item-camera-2.jpg" alt="product">
+              </div>
+              <div class="myCard-upper-overlay">
+                <span class="myCard-promote btn-danger">New</span>
+                <div class="d-flex justify-content-around">
+                  <a href="../assets/img/item/item-camera-2.jpg" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+                    <i class="far fa-image"></i>
+                  </a>
+                  <a href="#" class="myCard-btn btn-danger" title="Add to Cart" data-toggle="tooltip">
+                    <i class="fas fa-cart-plus"></i>
+                  </a>
+                  <span class="myCard-outofstock-text">Out of stock</span>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <h6 class="text-center text-small">
+                <a href="product-detail.html" class="myText-link">Canon EOS</a>
+              </h6>
+              <h6 class="text-center">
+                <s class="text-danger">$500</s> $450</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="myCard-product">
+            <div class="myCard-upper myCard-outofstock">
+              <div class="myCard-upper-img">
+                <img class="card-img rounded-0" src="../assets/img/item/item-camera-2.jpg" alt="product">
+              </div>
+              <div class="myCard-upper-overlay">
+                <span class="myCard-promote btn-danger">New</span>
+                <div class="d-flex justify-content-around">
+                  <a href="../img/item/item-camera-1.jpg" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+                    <i class="far fa-image"></i>
+                  </a>
+                  <a href="#" class="myCard-btn btn-danger" title="Add to Cart" data-toggle="tooltip">
+                    <i class="fas fa-cart-plus"></i>
+                  </a>
+                  <span class="myCard-outofstock-text">Out of stock</span>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <h6 class="text-center text-small">
+                <a href="product-detail.html" class="myText-link">Canon EOS</a>
+              </h6>
+              <h6 class="text-center">
+                <s class="text-danger">$500</s> $450</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-self-center mt-3">
+        <div class="col-12">
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1">
+                  <i class="fas fa-angle-double-left"></i>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="fas fa-angle-double-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

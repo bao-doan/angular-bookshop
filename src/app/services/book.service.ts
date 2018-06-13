@@ -10,16 +10,16 @@ import { Banner } from '../view-models/banner';
 
 export class BookService {
   // books: Book[];
-  private booksUrl = 'https://green-web-bookstore.herokuapp.com/api/books';
-  private bannersUrl = 'https://green-web-bookstore.herokuapp.com/api/banners';
+  private booksUrl = 'https://green-web-bookshop.herokuapp.com/api/books';
+  // private bannersUrl = 'https://green-web-bookstore.herokuapp.com/api/banners';
 
   constructor(private http: HttpClient) { }
   /** GET api-s from the server */
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.booksUrl);
   }
-  getBanners(): Observable<Banner[]> {
-    return this.http.get<Banner[]>(this.bannersUrl);
-  }
+  // getBanners(): Observable<Banner[]> {
+  //   return this.http.get<Banner[]>(this.bannersUrl);
+  // }
  
 }

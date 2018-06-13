@@ -1,0 +1,52 @@
+<!-- Main Content -->
+<div class="container-fluid myTitle py-3">
+    <div class="container">
+        <div class="row flex-column">
+          <h3 class=""><b></b>CONTACT US</h3>
+          <nav aria-label="breadcrumb myBreadcrum">
+              <ol class="breadcrumb myBreadcrum">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12 col-md-6 mb-4">
+        <h4 class="mb-4">Google Map</h4>
+        <div id="googleMap" class="myGoogleMap">
+                <agm-map [latitude]="lat" [longitude]="lng">
+                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+          <h4 class="mb-4">Send us your message:</h4>
+          <div class="form-group">
+              <label for="formContactName" class="sr-only">Full name:</label>
+              <input type="text" class="form-control myInput-elegant-3" id="formContactName" placeholder="Full Name">
+          </div>
+          <div class="form-group">
+              <label for="formContactPhone" class="sr-only">Phone number:</label>
+              <input type="text" class="form-control myInput-elegant-3" id="formContactPhone" placeholder="Phone number">
+          </div>
+          <div class="form-group">
+              <label for="formContactEmail" class="sr-only">Email address:</label>
+              <input type="email" class="form-control myInput-elegant-3" id="formContactEmail" placeholder="Email address">
+          </div>
+          <div class="form-group">
+              <label for="formContactMessage" class="sr-only">Full name:</label>
+              <textarea class="form-control myInput-elegant-3" id="formContactMessage" placeholder="Your messages" name="" cols="30" rows="7"></textarea>
+          </div>
+          <button type="submit" class="btn myBtn-fill">Send</button>
+      </div>
+    </div>
+  </div>
+  <!-- For google map working -->
+  <!-- <script>
+     
+  </script>
+      
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKoMhjN0nLfVZjgrUjsp8tRFrDL_GYZ7w&callback=myMap"></script> -->

@@ -12,9 +12,9 @@ body {
     .myCollapse-sm-left {
         text-align: left;
     };
-    .myCollapse-filter {
+    /* .myCollapse-filter {
         display: none;
-    }
+    } */
     .myCardBoard {
         display: flex;
         justify-content: center; 
@@ -113,7 +113,11 @@ body {
     color: var(--myBlueGray2);
     text-decoration: underline;
 }
-.myText-link:hover {
+.myText-link-2 {
+    color: var(--myBlueGray2);
+    text-decoration: none;
+}
+.myText-link:hover, .myText-link-2:hover {
     color: var(--myOrange);
 }
 .myText-subtitle {
@@ -428,4 +432,12 @@ body {
     position: absolute;
     top: 0;
     left: 100%;
+}
+.myCursor-pointer {
+    cursor: pointer;
+}
+.myGoogleMap {
+    border: 1px solid lightgray;
+    width: 100%;
+    min-height: 370px;
 }

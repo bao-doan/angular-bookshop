@@ -5,18 +5,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { AccountComponent } from '../account/account.component';
 import { SignupComponent } from '../signup/signup.component';
-import { AdminComponent } from '../admin/admin.component';
-import { AdminCategoryComponent } from '../admin-category/admin-category.component';
-import { AdminProductComponent } from '../admin-product/admin-product.component';
+import { CartComponent } from '../cart/cart.component';
+import { CheckoutComponent } from '../checkout/checkout.component';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
+import { ProductListComponent } from '../product-list/product-list.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ContactComponent } from '../contact/contact.component';
+import { AboutComponent } from '../about/about.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/admin', pathMatch: 'full' },
-  {path: 'admin', component: AdminComponent },
+  { path: '', redirectTo: '/account', pathMatch: 'full' },
   {path: 'home', component: HomeComponent },
-  {path: 'admin-category', component: AdminCategoryComponent },
-  {path: 'admin-product', component: AdminProductComponent },
   {path: 'account', component: AccountComponent },
-  {path: 'signup', component: SignupComponent }
+  {path: 'signup', component: SignupComponent },
+  {path: 'cart', component: CartComponent },
+  {path: 'checkout', component: CheckoutComponent },
+  {path: 'order-detail', component: OrderDetailComponent },
+  {path: 'product-list', component: ProductListComponent },
+  {path: 'product-detail', component: ProductDetailComponent },
+  {path: 'contact', component: ContactComponent },
+  {path: 'about', component: AboutComponent }
   
 ];
 @NgModule({

@@ -1,0 +1,83 @@
+<!-- Main Content -->
+<div class="container-fluid myTitle py-3">
+  <div class="container">
+      <div class="row flex-column">
+          <h3 class="">SHOPPING CART</h3>
+          <nav aria-label="breadcrumb myBreadcrum">
+              <ol class="breadcrumb myBreadcrum">
+                  <li class="breadcrumb-item">
+                      <a href="" routerLink="/home">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">Cart</li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <div class="col-12 col-md-8 d-flex flex-column mb-3">
+          <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Shopping Products</h5>
+          <div class="table-responsive mb-2">
+              <table class="table border">
+                  <thead>
+                      <tr class=" ">
+                          <th scope="col"> </th>
+                          <th class="myTable-product" scope="col">Product</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Color</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="myTable-row">
+                          <td>
+                              <div class="myImg-thumbnail">
+                                  <img src="../assets/img/item/item-camera-1.jpg" class="w-100" alt="">
+                              </div>
+                          </td>
+                          <th class="myTable-product" scope="row">
+                              <h6 class="mb-1"><a href="" class="myText-link" routerLink="product-detail">Canon EOS 2018 New Edition Limited 100% New US Imported</a></h6>
+                              <a href="#" class="text-small text-muted"><small><i class="far fa-trash-alt"></i> Remove</small></a>
+                          </th>
+                          <td>$450</td>
+                          <td>Black</td>
+                          <td>
+                              <label for="formCartQuantity" class="sr-only"></label>
+                              <input type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="" value="1" name="">
+                          </td>
+                          <td><b>$450</b></td>
+                      </tr>
+                      
+                  </tbody>
+              </table>
+          </div>
+          <div class="form-group w-50 align-self-end">
+              <label for="formCartDiscount"><b>Apply Discount:</b></label>
+              <input type="text" class="form-control text-uppercase" id="formCartDiscount" aria-describedby="" placeholder="">
+            </div>
+          <button type="submit" class="btn myBtn-fill align-self-end">Update Cart</button>
+      </div>
+      <div class="col-12 col-md-4 d-flex flex-column">
+          <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Cart Totals</h5>
+          <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">Products</th>
+                    <td class="text-right">$1350</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Discount</th>
+                    <td class="text-right">-$0</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">TOTAL</th>
+                    <td class="text-right"><b>$1370</b></td>
+                  </tr>
+                </tbody>
+          </table>
+          <a href="" class="btn myBtn-fill align-self-end" target="_blank" routerLink="/checkout">Checkout</a>
+      </div>
+  </div>
+</div>
