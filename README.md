@@ -3,7 +3,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
 ## Creator's note:
-For new template
+work 1.0.3 - add components from original shop template
+work 1.0.4 - add components from original shop template
 
 ## Development server
 

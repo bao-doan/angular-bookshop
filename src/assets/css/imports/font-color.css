@@ -73,7 +73,21 @@
     --myColorC1: ;
     --myColorC2: ;
     --myColorC3: ;
+    /* --------- My New Color Pallet---------- */
+    --myColor-white: rgb(255, 255, 255);
+    /* Hot */
+    --myColor-hot-orange: #F7A027;
+    --myColor-hot-red: #BA2B07;
+    /* Cool */
+    --myColor-cool-leaf: #07C01C;
+    --myColor-cool-forest: #0A453F;
+    /* Cold */
+    --myColor-cold-jade: #15C848;
+    --myColor-cold-fancy: #0B4060;
 }
 .myBg-bluegray1 {
     background-color: var(--myBlueGray1);
+}
+.bg-light {
+    background-color: var(--myColor-hot-red);
 }
