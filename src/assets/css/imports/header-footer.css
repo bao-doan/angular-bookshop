@@ -233,6 +233,29 @@ body {
     border-bottom: 1px solid var(--myBlackOpa2);
 }
 /* test site */
+.myCard-product {
+    box-shadow: transparent;
+    /* z-index: 99; */
+	-webkit-transition:  300ms ease-out; 
+       -moz-transition:  300ms ease-out; 
+         -o-transition:  300ms ease-out; 
+            transition:  300ms ease-out; 
+}
+.myCard-product:hover {
+    box-shadow:0px 13px 15px -3px rgba(0, 0, 0, 0.3);
+    /* transform: scale(1.1); */
+    transform: translate(0px,-5px);
+    border-radius: 10px;
+    /* z-index: 100; */
+	-webkit-transition:  300ms ease-out; 
+       -moz-transition:  300ms ease-out; 
+         -o-transition:  300ms ease-out; 
+            transition:  300ms ease-out; 
+}
+.myCard-product:focus {
+    box-shadow: transparent;
+    border: transparent;
+}
 .myCard-upper {
     position: relative;
     /* width: 100%; */
@@ -243,6 +266,8 @@ body {
     width: 100%;
     height: auto;
     overflow: hidden;
+    min-height: 200px;
+    max-height: 30vh;
 
 }
 .myCard-upper-img img{

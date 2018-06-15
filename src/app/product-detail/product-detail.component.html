@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-12 d-flex flex-row flex-wrap myCarousel-img-nav">
                     <div data-target="#carouselProductIndicator" data-slide-to="0" class="active">
-                        <img src="../assets/img/item/item-camera-1.jpg" alt="" class="w-100">
+                        <img src="../assets/img/item/item-camera-2.jpg" alt="" class="w-100">
                     </div>
                     <div data-target="#carouselProductIndicator" data-slide-to="1" class="">
                         <img src="../assets/img/item/item-camera-2.jpg" alt="" class="w-100">
@@ -71,11 +71,11 @@
             </div>
         </div>
         <!-- Add to Cart site  -->
-        <div class="col-12 col-sm-6 col-md-6 col-lg-8 mb-3">
+        <div *ngIf="book" class="col-12 col-sm-6 col-md-6 col-lg-8 mb-3">
             <p class="sr-only">Product</p>
-            <h5>Canon EOS 2018 New Edition</h5>
+            <h5>{{book.title}}</h5>
             <h6 class="">
-                <s>$500</s> <span class="text-danger">$450</span>
+                <s>{{book.previousPrice | currency:'VND'}}</s> <span class="text-danger">{{book.sellingPrice | currency:'VND'}}</span>
             </h6>
             <div class="d-flex flex-row mb-3">
                 <h6 class="text-success mr-3">
@@ -87,6 +87,17 @@
             </div>
             
             <div class="d-flex flex-column">
+                <span>ID:
+                    <span>{{book._id}}</span>
+                </span>
+                <span>Author:
+                    <span>{{book.author}}</span>
+                </span>
+                <span>Detail:
+                    <a class="myText-link" href="#tabSpecification"> View</a>
+                </span>
+            </div>
+            <!-- <div class="d-flex flex-column">
                 <span>Warranty:
                     <span>12 months</span>
                 </span>
@@ -102,8 +113,7 @@
                     <li>Free batterry change</li>
                     <li>SD Memory Card</li>
                 </ul>
-
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-5 col-sm-6 col-md-4 col-lg-3 col-xl-3 pr-0">
                     <label for="productQuantity" class="">Quantity</label>
@@ -120,7 +130,7 @@
                     </select>
                 </div>
             </div>
-            <a href="#" class="btn myBtn-fill mt-3" title="Add to Cart" data-toggle="tooltip">
+            <a href="#" class="btn myBtn-fill mt-3" title="Add to Cart">
                 <i class="fas fa-cart-plus"></i> Add to Cart</a>
             <!-- <div class="w-25">
                 
@@ -141,50 +151,53 @@
                 </div>
             </nav>
             <div class="tab-content" id="tabAccount">
-                <div class="tab-pane myPost fade py-2" id="tabDescription" role="tabpanel" aria-labelledby="tabDescriptionLabel">
-                    <h4 class="my-4">CANON EOS 2018 NEW EDITION</h4>
-                    <p class="myText-subtitle">Canon has done a brilliant job to revamp its DSLR line from top to bottom over the past couple of years, from the baby EOS Rebel T7/2000D and EOS 4000D through to the full-frame EOS 6D Mark II and EOS 5D Mark IV models.</p>
-                    <h5>New Design</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut soluta nisi necessitatibus impedit, ab earum, eum voluptatem vel, sunt error perspiciatis? Officia harum et vero minus ratione odio nostrum magni?</p>
-                    <div class="myFigure mx-auto mb-2 bg-primary">
-                        <div class="myFigure-img"><img src="../img/item/item-camera-1.jpg" alt="" class=""></div>
-                        <div class="myFigure-caption">Canon EOS 2018</div>
-                    </div>
-                    <h5>New Features</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum vel eos laboriosam eligendi illo totam ipsam ratione, facilis repellendus molestiae nesciunt, aliquid nisi placeat quisquam, a sed nam est saepe?</p>
+                <div *ngIf="book.fullDescription" [innerHTML]="book.fullDescription" class="tab-pane myPost fade py-3" id="tabDescription" role="tabpanel" aria-labelledby="tabDescriptionLabel">
+                    
                 </div>
-                <div class="tab-pane fade py-2" id="tabSpecification" role="tabpanel" aria-labelledby="tabSpecificationLabel">
+                <div  *ngIf="book" class="tab-pane fade py-2" id="tabSpecification" role="tabpanel" aria-labelledby="tabSpecificationLabel">
                     <h4 class="my-4">SPECIFICATION</h4>
                     <table class="table table-striped">
                         <tbody>
                           <tr>
                             <th scope="row">Product name</th>
-                            <td>CANON EOS 2018 New Edition</td>
+                            <td>{{book.title}}</td>
                           </tr>
                           <tr>
-                            <th scope="row">Brand</th>
-                            <td>Canon</td>
+                            <th scope="row">Author</th>
+                            <td>{{book.author}}</td>
                           </tr>
                           <tr>
-                            <th scope="row">New</th>
-                            <td>New 100%</td>
+                            <th scope="row">Publisher</th>
+                            <td>{{book.publisher}}</td>
                           </tr>
                           <tr>
-                            <th scope="row">Screen</th>
-                            <td>4 inch</td>
+                            <th scope="row">Page</th>
+                            <td>{{book.pages}}</td>
                           </tr>
                           <tr>
-                            <th scope="row">Battery</th>
-                            <td>05 hours</td>
+                            <th scope="row">Weight</th>
+                            <td>{{book.weight}}</td>
                           </tr>
                           <tr>
-                            <th scope="row">Box included</th>
-                            <td>Camera, len, cable, adaptor, SD Card, Guide</td>
+                            <th scope="row">Size (W x H x D)</th>
+                            <td>{{book.size.width}} &#215; {{book.size.height}} &#215; {{book.size.depth}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Release date</th>
+                            <td>{{book.releaseDate}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">SKU</th>
+                            <td>{{book.sku}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Price</th>
+                            <td>{{book.sellingPrice}}</td>
                           </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade py-2 show active" id="tabReview" role="tabpanel" aria-labelledby="tabReviewLabel">
+                <div  *ngIf="book.fullDescription" class="tab-pane fade py-2 show active" id="tabReview" role="tabpanel" aria-labelledby="tabReviewLabel">
                     <h4 class="my-4">REVIEWS</h4>
                     <div class="form-group">
                         <label for="formReviewMessage" class="">Comment:</label>

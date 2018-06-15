@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-white">
-    <a href="" class="myBrand-logo" target="_blank" routerLink="/home">Brand</a>
+    <a href="" class="myBrand-logo" routerLink="/home">Brand</a>
     <div class="d-flex flex-row pr-3">
         <a href="#" class="btn myBtn-icon myOutline text-dark" data-toggle="collapse" data-target="#collapseAccount" aria-controls="collapseAccount"
             aria-expanded="false">
@@ -76,8 +76,8 @@
                     <div class="d-flex flex-column myCart-bottom">
                         <span class="align-self-end mb-2">Total: $10,000</span>
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="" class="btn myBtn-fill mr-2" target="_blank" routerLink="/cart">View Cart</a>
-                            <a href="" class="btn myBtn-fill" target="_blank" routerLink="/checkout">Checkout</a>
+                            <a href="" class="btn myBtn-fill mr-2" routerLink="/cart">View Cart</a>
+                            <a href="" class="btn myBtn-fill" routerLink="/checkout">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -138,29 +138,29 @@
                     aria-expanded="false">
                     Products
                 </a>
-                <div class="dropdown-menu rounded-0" aria-labelledby="navbarProduct">
-                    <a class="dropdown-item" href=""  routerLink="/product-list">Laptop</a>
-                    <a class="dropdown-item" href=""  routerLink="/product-list">Macbook</a>
+                <div *ngIf="genres" class="dropdown-menu rounded-0" aria-labelledby="navbarProduct">
+                    <a *ngFor="let genre of genres" class="dropdown-item" href=""  routerLink="/product-list">{{genre.name}}</a>
+                    <!-- <a class="dropdown-item" href=""  routerLink="/product-list">Macbook</a>
                     <a class="dropdown-item" href=""  routerLink="/product-list">iPhone</a>
                     <a class="dropdown-item" href=""  routerLink="/product-list">iPad</a>
                     <a class="dropdown-item" href=""  routerLink="/product-list">Smartphone</a>
-                    <a class="dropdown-item" href=""  routerLink="/product-list">Camera</a>
+                    <a class="dropdown-item" href=""  routerLink="/product-list">Camera</a> -->
                     <!-- *** Test site *** -->
-                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarAccessories" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <!-- <a class="dropdown-item dropdown-toggle" href="#" id="navbarAccessories" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Accessories</a>
                     <div class="dropdown-menu ml-4 rounded-0" aria-labelledby="navbarAccessories">
                         <a class="dropdown-item" href="" routerLink="/product-list">Headphone</a>
                         <a class="dropdown-item" href="" routerLink="/product-list">Wireless mouse</a>
                         <a class="dropdown-item" href="" routerLink="/product-list">Camera len</a>
                         <a class="dropdown-item" href="" routerLink="/product-list">Camera flash</a>
-                    </div>
+                    </div> -->
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="" target="_blank" routerLink="/about">About</a>
+                <a class="nav-link" href="" routerLink="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="pages/contact.html" target="_blank" routerLink="/contact">Contact</a>
+                <a class="nav-link" href="" routerLink="/contact">Contact</a>
             </li>
         </ul>
     </div>

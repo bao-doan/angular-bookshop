@@ -11,7 +11,7 @@ const httpOptions = {
 
 
 export class BookService {
-  private booksUrl = 'http://green-web-bookshop.herokuapp.com/api/books';
+  private booksUrl = 'http://green-web-bookstore.herokuapp.com/api/books';
 
   constructor(private http: HttpClient) { }
   /** GET api-s from the server */
@@ -30,4 +30,9 @@ export class BookService {
     const url = `${this.booksUrl}/${book._id}`;
     return this.http.put<Book>(url, book, httpOptions )
   }
+  /** GET hero by id. Will 404 if id not found */
+getBook(id: string): Observable<Book> {
+  const url = `${this.booksUrl}/${id}`;
+  return this.http.get<Book>(url);
+}
 }

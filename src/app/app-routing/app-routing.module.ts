@@ -14,7 +14,7 @@ import { ContactComponent } from '../contact/contact.component';
 import { AboutComponent } from '../about/about.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/account', pathMatch: 'full' },
+  // { path: '', redirectTo: '/account', pathMatch: 'full' },
   {path: 'home', component: HomeComponent },
   {path: 'account', component: AccountComponent },
   {path: 'signup', component: SignupComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent },
   {path: 'order-detail', component: OrderDetailComponent },
   {path: 'product-list', component: ProductListComponent },
-  {path: 'product-detail', component: ProductDetailComponent },
+  {path: 'product-detail/:_id', component: ProductDetailComponent },
   {path: 'contact', component: ContactComponent },
   {path: 'about', component: AboutComponent }
   
