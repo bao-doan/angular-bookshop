@@ -6,41 +6,7 @@
     
 <!-- Modal: LOGIN -->
 <div class="modal fade" id="formLogin" tabindex="-1" role="dialog" aria-labelledby="formLoginLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="formLoginLabel">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group mt-2">
-                        <label for="formLoginEmail" class="sr-only">Email address:</label>
-                        <input type="email" class="form-control myInput-elegant-3" id="formLoginEmail" aria-describedby="emailHelp" placeholder="Email address">
-                    </div>
-                    <div class="form-group">
-                        <label for="formLoginPassword" class="sr-only">Password:</label>
-                        <input type="password" class="form-control myInput-elegant-3 mb-2" id="formLoginPassword" placeholder="Password">
-                        <a href="" class="text-muted" target="_blank">
-                            <small>I forgot my password.</small>
-                        </a>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="formLoginRemember">
-                        <label class="form-check-label text-muted" for="formLoginRemember">Remember login</label>
-                    </div>
-                    <div class="d-flex flex-column align-items-center mt-4">
-                        <button type="submit" class="btn myBtn-fill">Log in</button>
-                        <a href="" class="text-muted mt-2 mb-2" target="_blank"  routerLink="/signup">
-                            <small>I don't have an account.</small>
-                        </a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <app-login></app-login>
 </div>
 <!-- Modal: LOGOUT -->
 <div class="modal fade" id="formLogout" tabindex="-1" role="dialog" aria-labelledby="formLogoutLabel" aria-hidden="true">
@@ -56,8 +22,8 @@
                     <form action="" class="text-center">
                         <p>Are you sure to logout?</p>
                         <div>
-                            <button class="btn myBtn-outline mr-2">No</button>
-                            <button type="submit" class="btn myBtn-fill">Yes</button>
+                            <button class="btn myBtn-outline mr-2" data-dismiss="modal">No</button>
+                            <button (click)="onLogout()" type="submit" class="btn myBtn-fill" data-dismiss="modal">Yes</button>
                         </div>
                     </form>
                 </div>

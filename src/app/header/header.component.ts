@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Genre } from '../view-models/genre';
 import { GenreService } from '../services/genre.service';
+import { UserService } from '../services/user.service';
+import { User } from '../view-models/user';
+import { Users } from '../view-models/users';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +13,17 @@ import { GenreService } from '../services/genre.service';
 })
 export class HeaderComponent implements OnInit {
   genres: Genre[];
-  constructor(private genreService: GenreService) { }
+  user: User = new User();
+  constructor(private genreService: GenreService, private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers();
     this.getGenres();
-    if (this.genres !== null) {
-      alert(`Da lay genre thanh cong`);
-    }
   }
   getGenres(): void {
     this.genreService.getGenres().subscribe(_ => this.genres = _);
+  }
+  getUsers(): void {
+    this.userService.getUsers().subscribe(_ => this.user = _.user )
   }
 }

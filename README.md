@@ -6,7 +6,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 work 1.0.3 - add components from original shop template
 work 1.0.4 - add components from original shop template
 work 1.0.5 - get Genres, Books, Product-list & Product-detail (:_id but need improvement).
-
+work 1.0.6 - 
+    + Add user register, user login.
+    + Add pagination for ProductListComponent.
+    + Add Check Plural.
+    + Add show password button with icon (eye/eyeslash).
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -11,7 +11,7 @@ const httpOptions = {
 
 
 export class BookService {
-  private booksUrl = 'http://green-web-bookstore.herokuapp.com/api/books';
+  private booksUrl = 'http://green-web-bookshop.herokuapp.com/api/books';
 
   constructor(private http: HttpClient) { }
   /** GET api-s from the server */

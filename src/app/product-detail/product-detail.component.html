@@ -75,7 +75,7 @@
             <p class="sr-only">Product</p>
             <h5>{{book.title}}</h5>
             <h6 class="">
-                <s>{{book.previousPrice | currency:'VND'}}</s> <span class="text-danger">{{book.sellingPrice | currency:'VND'}}</span>
+                <s *ngIf="book.previousPrice > book.sellingPrice">{{book.previousPrice | currency:'VND'}}</s> <span class="text-danger">{{book.sellingPrice | currency:'VND'}}</span>
             </h6>
             <div class="d-flex flex-row mb-3">
                 <h6 class="text-success mr-3">

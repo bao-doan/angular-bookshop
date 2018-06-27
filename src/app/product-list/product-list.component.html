@@ -36,7 +36,6 @@
             <div class="row mx-0 mt-2">
               <div class="col-12 px-0">
                 <a class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
-                  
                   data-toggle="collapse" href="#collapseCategories" role="button" aria-expanded="false" aria-controls="collapseCategories">
                   <span class="myText-padding-left">
                     <b>Categories</b>
@@ -53,8 +52,8 @@
             <!-- Sub collapse: brands -->
             <div class="row mx-0 mt-2">
               <div class="col-12 px-0">
-                <a href="#collapseBrand" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
-                  data-target="#collapseBrand" aria-controls="collapseBrand" aria-expanded="false">
+                <a href="#collapseBrand" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0"
+                  data-toggle="collapse" data-target="#collapseBrand" aria-controls="collapseBrand" aria-expanded="false">
                   <span class="myText-margin-left">
                     <b>Brands</b>
                   </span>
@@ -63,15 +62,15 @@
               </div>
               <div class="col-12 px-0">
                 <div *ngIf="books" class="collapse show myCollapse-filter myText-margin-left myBorder-bottom" id="collapseBrand">
-                    <a *ngFor="let book of books" class="myText-link-2 d-block mb-1" href="">{{book.publisher}}</a>
+                  <a *ngFor="let book of books" class="myText-link-2 d-block mb-1" href="">{{book.publisher}}</a>
                 </div>
               </div>
             </div>
             <!-- Sub collapse: price ranges -->
             <div class="row mx-0 mt-2">
               <div class="col-12 px-0">
-                <a href="#collapsePrice" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0" data-toggle="collapse"
-                  data-target="#collapsePrice" aria-controls="collapsePrice" aria-expanded="false">
+                <a href="#collapsePrice" class="btn myOutline text-dark w-100 d-flex flex-row justify-content-between align-items-center px-0"
+                  data-toggle="collapse" data-target="#collapsePrice" aria-controls="collapsePrice" aria-expanded="false">
                   <span class="myText-margin-left">
                     <b>Prices</b>
                   </span>
@@ -80,9 +79,9 @@
               </div>
               <div class="col-12 px-0">
                 <div class="collapse show myCollapse-filter myText-margin-left myBorder-bottom" id="collapsePrice">
-                    <a class="myText-link-2 d-block mb-1" href="">$0 - $100</a>
-                    <a class="myText-link-2 d-block mb-1" href="">$100 - $1000</a>
-                    <a class="myText-link-2 d-block mb-1" href="">$1000 - $2000</a>
+                  <a class="myText-link-2 d-block mb-1" href="">$0 - $100</a>
+                  <a class="myText-link-2 d-block mb-1" href="">$100 - $1000</a>
+                  <a class="myText-link-2 d-block mb-1" href="">$1000 - $2000</a>
                 </div>
               </div>
             </div>
@@ -95,23 +94,36 @@
       <div *ngIf="books" class="row myCardBoard mt-2 mb-2">
         <div class="col-12 mb-2">
           <h5>All Products</h5>
-          <p class="text-muted">Displaying {{books?.length}} items</p>
+          <p class="text-muted">Displaying {{books2?.length || '0'}} {{checkPluralItems}} out of {{books?.length|| '0'}} {{checkPluralBooks}}</p>
         </div>
-        <div *ngFor="let book of books" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="col-12 mb-2">
+          <div class="form-group float-right">
+            <label class="sr-only" for="selectPagination">Items per Page</label>
+            <select [(ngModel)]="step" (change)="onShowOption(step)" class="form-control myInput-elegant-3 w-auto" id="selectPagination"
+              required>
+              <option [ngValue]="books?.length">Show all</option>
+              <option [ngValue]="2">Show 2 items</option>
+              <option [ngValue]="5">Show 5 items</option>
+              <option [ngValue]="10">Show 10 items</option>
+              <option [ngValue]="20">Show 20 items</option>
+            </select>
+          </div>
+        </div>
+        <div *ngFor="let book of books2" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
           <div class="myCard-product">
             <div class="myCard-upper myCursor-pointer mb-2" title="Author:&#10;&#34;{{book.author}}&#34;">
               <div class="myCard-upper-img">
-                <img class="card-img rounded-0" src="{{book.images.main}}" alt="product">
+                <img class="card-img rounded-0" src="{{book.images?.main}}" alt="product">
               </div>
               <div class="myCard-upper-overlay">
                 <span class="myCard-promote btn-danger">New</span>
                 <div class="d-flex justify-content-around">
-                  <a href="{{book.images.main}}" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+                  <a href="{{book.images?.main}}" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
                     <i class="far fa-image"></i>
                   </a>
-                  <a href="#" class="myCard-btn btn-danger" title="Add to Cart" data-toggle="tooltip">
+                  <button type="button" class="myCard-btn btn-danger" title="Add to Cart">
                     <i class="fas fa-cart-plus"></i>
-                  </a>
+                  </button>
                   <span class="myCard-outofstock-text">Out of stock</span>
                 </div>
               </div>
@@ -121,7 +133,7 @@
                 <a href="" class="myText-link-2">{{book.title}}</a>
               </h6>
               <h6 class="text-center">
-                <s class="text-danger text-small text-monospace">{{book.previousPrice | currency:'VND'}}</s> {{book.sellingPrice | currency:'VND'}}</h6>
+                <s *ngIf="book.previousPrice > book.sellingPrice" class="text-danger text-small text-monospace">{{book.previousPrice | currency:'VND'}}</s> {{book.sellingPrice | currency:'VND'}}</h6>
             </div>
           </div>
         </div>
@@ -210,30 +222,26 @@
           </div>
         </div> -->
       </div>
+      <!-- Pagination -->
       <div class="row align-self-center mt-3">
-        <div class="col-12">
-          <nav aria-label="...">
+        <div class="col-12 d-flex justify-content-center mb-3">
+          <nav class="mb-3" aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-double-left"></i>
-                </a>
+              <li class="">
+                <button (click)="onPrevPage(selectedPage)" [class.invisible]="selectedPage == 1" class="btn btn-link text-dark" title="Previous">
+                  <i class="fas fa-chevron-left"></i>
+                  <span class="sr-only">Prev</span>
+                </button>
               </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1
-                  <span class="sr-only">(current)</span>
-                </a>
+              <li class="page-item" *ngFor="let page of pageArray" [class.active]="page == selectedPage">
+                <button class="btn rounded-circle page-link mx-1" *ngIf="page < 6" (click)="onShowItems(page)">{{page}}</button>
+                <button class="btn rounded-circle page-link mx-1" *ngIf="page >= 6" (click)="onShowItems(page)">...</button>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  <i class="fas fa-angle-double-right"></i>
-                </a>
+              <li class="">
+                <button (click)="onNextPage(selectedPage)" [class.invisible]="selectedPage == pages" class="btn btn-link text-dark" title="Next">
+                  <i class="fas fa-chevron-right"></i>
+                  <span class="sr-only">Next</span>
+                </button>
               </li>
             </ul>
           </nav>

@@ -20,7 +20,6 @@ body {
         justify-content: center; 
         /* Use: This let product cards play center when SM, play left when above SM */
     }
-    
 }
 .myBody-buffer {
     height: 50vh; /* body buffer for very-short-content pages*/
@@ -112,10 +111,16 @@ body {
 .myText-link {
     color: var(--myBlueGray2);
     text-decoration: underline;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 .myText-link-2 {
     color: var(--myBlueGray2);
     text-decoration: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 .myText-link:hover, .myText-link-2:hover {
     color: var(--myOrange);
@@ -136,6 +141,10 @@ body {
 .myDropdown .dropdown-menu a:hover{
     color: rgba(255,255,255,1);
     background: slategray;
+}
+.myDropdown-floatup {
+    z-index: 10000;
+    border-radius: 0px;
 }
 .modal * {
     border-radius: 0px;
@@ -465,4 +474,10 @@ body {
     border: 1px solid lightgray;
     width: 100%;
     min-height: 370px;
+}
+.myIcon-inside {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
 }
