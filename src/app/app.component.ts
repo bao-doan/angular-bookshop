@@ -11,12 +11,9 @@ import { GenreService } from './services/genre.service';
 })
 export class AppComponent implements OnInit {
   loginStatus: boolean = false;
-
-  title = 'app';
   genres: Genre[];
   user: User = new User();
   currentuser = JSON.parse(localStorage.getItem('currentUser'));
-  testOnly = false;
   constructor ( 
     private authService: AuthService,
     private userService: UserService,
@@ -27,7 +24,7 @@ export class AppComponent implements OnInit {
     if (this.currentuser) {
       this.loginStatus = true;
       this.getUsers();
-    } 
+    } else {}
   }
   mySetTrue(event:boolean): any {
     this.loginStatus = event;
@@ -43,7 +40,7 @@ export class AppComponent implements OnInit {
         {
           this.user = _.user;
           console.log(`AppComponent: getUsers(): ${this.user.first}`);
-        } )
+        })
     } else {
       this.user = new User();
       alert(`AppComponent: getUsers() says ${this.user.first}`);

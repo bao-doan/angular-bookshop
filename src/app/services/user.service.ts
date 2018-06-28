@@ -20,4 +20,5 @@ export class UserService {
   addUser(users: UserRegister): Observable<UserRegister> {
     return this.http.post<UserRegister>(this.userUrl, users, httpOptions);
   }
+  
 }

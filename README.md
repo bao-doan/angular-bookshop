@@ -13,6 +13,7 @@ work 1.0.6 -
     + Add show password button with icon (eye/eyeslash).
 work 1.0.7 - AppComponent can get User 'asynchronously' for Header/Navbar using 'EventEmitter'.
     + (Saving codes purpose only, still need some fixing for login form)
+work 1.0.8 - Save codes
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit {
           this.loginStatus = true;
           this.loginStatusChange.emit(this.loginStatus);
           alert(`LoginComponent: loginStatus = ${this.loginStatus} -> Emitted to loginStatusChange`)
-          // this.getUser();
           this.router.navigate([this.returnUrl]);
         },
         error => {
@@ -99,10 +98,5 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
         
-  }
-  getUser():void {
-    this.userService.getUsers().subscribe(_ => {
-      this.user = _.user;
-    });
   }
 }

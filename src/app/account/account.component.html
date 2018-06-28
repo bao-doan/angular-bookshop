@@ -57,7 +57,7 @@
                 <div class="row">
                   <div class="col-12 col-md-10 col-lg-6">
                     <div class="row">
-                      <div class="col-4">
+                      <!-- <div class="col-4">
                         <div class="form-group w-100">
                           <label for="formSignupGender" class="sr-only">Gender</label>
                           <select class="form-control myInput-elegant-2" id="formSignupGender">
@@ -65,14 +65,13 @@
                             <option>Ms.</option>
                           </select>
                         </div>
-                      </div>
-
+                      </div> -->
                     </div>
                     <div class="row">
                       <div class="col-6 pr-1">
                         <div class="form-group">
                           <label for="formSignupFirstname" class="sr-only">First Name:</label>
-                          <input type="text" class="form-control myInput-elegant-3" id="formSignupFirstname" aria-describedby="" placeholder="First Name">
+                          <input [(ngModel)]="user.first" type="text" class="form-control myInput-elegant-3" id="formSignupFirstname" aria-describedby="" placeholder="First Name" [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                       <div class="col-6">

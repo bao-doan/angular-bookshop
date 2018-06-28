@@ -46,8 +46,5 @@ export class AuthService {
   onReloadWindow() {
     window.location.reload();
   }
-  onReturnCurrentContent() {
-    
-  }
   
 }
