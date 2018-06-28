@@ -15,7 +15,6 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-  user: User = new User();
   private loginUrl = 'http://green-web-ecommerce.herokuapp.com/v1/users/login';
   constructor(
     private http: HttpClient,
@@ -31,10 +30,6 @@ export class AuthService {
           // store username and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify({ email: username, token: res.token }));
           // this.onReloadWindow();
-          if (localStorage.getItem('currentUser')) {
-            this.getUsers();
-            console.log(`AuthService: Da co currentUser first = ${this.user.first}`)
-          } else {console.log(`AuthService: Chua co currentUser`)}
         }
       }));
       
@@ -45,7 +40,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     // navigate to login component
     // this.loggedIn.next(false);
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
     // this.onReloadWindow();
   }
   onReloadWindow() {
@@ -54,10 +49,5 @@ export class AuthService {
   onReturnCurrentContent() {
     
   }
-  getUsers(): void {
-    this.userService.getUsers().subscribe(_ => {
-      this.user = _.user;
-      console.log(`AuthService da get User ${this.user.first}`);
-    } );
-  }
+  
 }

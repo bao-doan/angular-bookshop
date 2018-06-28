@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { AuthService } from '../auth/auth.service';
 
 import { UserService } from '../services/user.service';
 import { User } from '../view-models/user';
+import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,12 +20,10 @@ export class LoginComponent implements OnInit {
   error = '';
   loginShopForm: FormGroup;
   private formSubmitAttempt: boolean;
-  // For get user after logging in
-  user: User = this.authService.user;
-  
-  // Demo output\
-  // @Output() outputValue: string = 'this is Demo Output';
-
+  user:User = new User();
+  // Demo output
+  @Input() loginStatus: boolean;
+  @Output() loginStatusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -32,39 +31,26 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService
   ) { }
-
   ngOnInit() {
+    // alert(`LoginComponent: loginStatus = ${this.loginStatus}`);
     this.loginShopForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    // reset login status
     // this.authService.logout();
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   // convenience getter for easy access to form fields
   get f() { return this.loginShopForm.controls; }
 
-
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginShopForm.invalid) {
       return;
     }
-
     this.isLoggedIn();
-  }
-  onCheckLoggedIn(): void {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      console.log('Da nhan thong tin Login')
-      document.getElementById('hiddenLogin').click();
-    } 
-    return console.log('baodoan: No currentUser!');
   }
   // For toggle Show or Hide password input
   show: string = "password";
@@ -77,17 +63,22 @@ export class LoginComponent implements OnInit {
       this.show = "text";
       this.value = 1;
     }
-    
   }
   isLoggedIn(): void {
-    let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentuser && currentuser.token) {
-      // store username and jwt token in local storage to keep user logged in between page refreshes
-      console.log(`Already logged in, User: ${currentuser.email} | Token: ${currentuser.token}`);
-      alert(`You must logout before logging in as an another User`)
-    } else {
-      console.log('No user logged in, ready to log in now');
+    // let currentuser = JSON.parse(localStorage.getItem('currentUser'));
+    // if (currentuser && currentuser.token) {
+    //   // store username and jwt token in local storage to keep user logged in between page refreshes
+    //   console.log(`Already logged in, User: ${currentuser.email} | Token: ${currentuser.token}`);
+    //   alert(`You must logout before logging in as an another User`)
+    // } else {
+    //   console.log('No user logged in, ready to log in now');
+    //   this.onLogin();
+    // }
+    if (this.loginStatus == false) {
+      console.log(`Login đã nhận loginStatus = false -> Ready to login`);
       this.onLogin();
+    } else {
+      console.log(`Login đã nhận loginStatus = true -> Will not do login`);
     }
   }
   onLogin(): void {
@@ -96,34 +87,22 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          // this.user = this.authService.user;
-          // if (this.user) {console.log(`Login da lay user thanh cong ${this.user.first}`);}
+          alert(`LoginComponent: Da co Token = ${JSON.stringify(localStorage.getItem('currentUser'))}`);
+          this.loginStatus = true;
+          this.loginStatusChange.emit(this.loginStatus);
+          alert(`LoginComponent: loginStatus = ${this.loginStatus} -> Emitted to loginStatusChange`)
+          // this.getUser();
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.error = error;
           this.loading = false;
         });
-
-        // Neu da log in vao roi thi ley User luon
-        // this.user = this.authService.user;
-        // this.authService.getUsers();
-        // this.user = this.authService.user;
-        if (localStorage.getItem('currentUser')) {
-          console.log(`Da co Token`);
-          this.userService.getUsers().subscribe(_ =>
-             {
-               this.user = _.user;
-               console.log(`Login da lay User ${this.user.first}`);
-            }
-          )
-        }
+        
   }
-  // getUsers(): void {
-  //   this.userService.getUsers().subscribe(_ => {
-  //     this.user = _.user;
-  //     console.log(`Da get User ${this.user.first}`);
-  //   } );
-  // }
-
+  getUser():void {
+    this.userService.getUsers().subscribe(_ => {
+      this.user = _.user;
+    });
+  }
 }

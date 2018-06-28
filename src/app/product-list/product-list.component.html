@@ -130,7 +130,7 @@
             </div>
             <div class="">
               <h6 class="text-center text-small myCursor-pointer" routerLink="/product-detail/{{book._id}}">
-                <a href="" class="myText-link-2">{{book.title}}</a>
+                <a class="myText-link-2" routerLink="/product-detail/{{book._id}}">{{book.title}}</a>
               </h6>
               <h6 class="text-center">
                 <s *ngIf="book.previousPrice > book.sellingPrice" class="text-danger text-small text-monospace">{{book.previousPrice | currency:'VND'}}</s> {{book.sellingPrice | currency:'VND'}}</h6>
