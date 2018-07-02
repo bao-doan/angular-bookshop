@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
 // import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,9 +49,6 @@ import { UserService } from './services/user.service';
     AppRoutingModule,
     ReactiveFormsModule,
     // AppBootstrapModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAKoMhjN0nLfVZjgrUjsp8tRFrDL_GYZ7w'
-    })
   ],
   providers: [
     AuthGuard,

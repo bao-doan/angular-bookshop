@@ -14,6 +14,7 @@ work 1.0.6 -
 work 1.0.7 - AppComponent can get User 'asynchronously' for Header/Navbar using 'EventEmitter'.
     + (Saving codes purpose only, still need some fixing for login form)
 work 1.0.8 - Save codes
+work 1.0.9 - Remove GoggleMap for Angular from package.json, use iframe instead for Google Map
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

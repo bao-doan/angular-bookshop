@@ -182,7 +182,7 @@
         loginStatus {{loginStatus}}
     </div>
     <div>This is LoginComponent call as Child not RouterOutlet</div>
-    <!-- <app-login [loginStatus]="loginStatus" (loginStatusChange)="mySetTrue($event)"></app-login> -->
+    <app-login [loginStatus]="loginStatus" (loginStatusChange)="mySetTrue($event)"></app-login>
     <div>Below is RouterOutlet</div>
     <router-outlet></router-outlet>
 </div>

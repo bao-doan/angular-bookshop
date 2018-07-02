@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   objectUser: UserRegister = new UserRegister();
   checkbox: boolean = false;
+  error;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -52,7 +53,12 @@ export class RegisterComponent implements OnInit {
     }
   }
   addUsers(): void {
-    this.userService.addUser(this.objectUser).subscribe();
+    this.userService.addUser(this.objectUser).subscribe(
+      data => {},
+      error => {
+        this.error = error;
+      }
+    );
   }
   // For toggle Show or Hide password input
   show: string = "password";
@@ -65,6 +71,5 @@ export class RegisterComponent implements OnInit {
       this.show = "text";
       this.value = 1;
     }
-    
   }
 }
