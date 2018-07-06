@@ -13,6 +13,7 @@ const httpOptions = {
 })
 export class UserService {
   private userUrl = 'http://green-web-ecommerce.herokuapp.com/v1/users/';
+
   constructor(private http: HttpClient) { }
   getUsers(): Observable<Users> {
     return this.http.get<Users>(this.userUrl);
@@ -21,4 +22,6 @@ export class UserService {
     return this.http.post<UserRegister>(this.userUrl, users, httpOptions);
   }
   
+ 
+
 }

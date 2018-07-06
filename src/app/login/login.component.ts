@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { User } from '../view-models/user';
 import { HeaderComponent } from '../header/header.component';
+import { Subscription }   from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,39 +15,37 @@ import { HeaderComponent } from '../header/header.component';
 })
 
 export class LoginComponent implements OnInit {
+  // Properties for Login Form
   loading = false;
   submitted = false;
   returnUrl: string;
   error = '';
   loginShopForm: FormGroup;
-  private formSubmitAttempt: boolean;
   user:User = new User();
-  // Demo output
-  @Input() loginStatus: boolean;
-  @Output() loginStatusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  // Properties for communicating
+  status: boolean;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
-    private userService: UserService
-  ) { }
+    private authService: AuthService
+  ) {
+    this.authService.status$.subscribe(_ => {
+      this.status = _;
+    })
+   }
   ngOnInit() {
-    // alert(`LoginComponent: loginStatus = ${this.loginStatus}`);
     this.loginShopForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    // this.authService.logout();
-    // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  // convenience getter for easy access to form fields
+
   get f() { return this.loginShopForm.controls; }
 
   onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.loginShopForm.invalid) {
       return;
     }
@@ -65,20 +64,15 @@ export class LoginComponent implements OnInit {
     }
   }
   isLoggedIn(): void {
-    // let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    // if (currentuser && currentuser.token) {
-    //   // store username and jwt token in local storage to keep user logged in between page refreshes
-    //   console.log(`Already logged in, User: ${currentuser.email} | Token: ${currentuser.token}`);
-    //   alert(`You must logout before logging in as an another User`)
-    // } else {
-    //   console.log('No user logged in, ready to log in now');
-    //   this.onLogin();
-    // }
-    if (this.loginStatus == false) {
-      console.log(`Login đã nhận loginStatus = false -> Ready to login`);
+    this.authService.status$.subscribe(_ => {
+      this.status = _;
+      console.log(`status$ = ${_}`);
+    });
+    if (this.status == false) {
+      console.log(`LoginComponent: status = ${this.status} -> Ready to login`);
       this.onLogin();
     } else {
-      console.log(`Login đã nhận loginStatus = true -> Will not do login`);
+      console.log(`LoginComponent: status = ${this.status} -> Cannot login`);
     }
   }
   onLogin(): void {
@@ -88,9 +82,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           alert(`LoginComponent: Da co Token = ${JSON.stringify(localStorage.getItem('currentUser'))}`);
-          this.loginStatus = true;
-          this.loginStatusChange.emit(this.loginStatus);
-          alert(`LoginComponent: loginStatus = ${this.loginStatus} -> Emitted to loginStatusChange`)
+          this.status = true;
+          this.authService.announceStatus(this.status);
           this.router.navigate([this.returnUrl]);
         },
         error => {

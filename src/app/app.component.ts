@@ -4,38 +4,55 @@ import { User } from './view-models/user';
 import { Genre } from './view-models/genre';
 import { UserService } from './services/user.service';
 import { GenreService } from './services/genre.service';
+
+import { Cart } from './view-models/cart';
+import { Product } from './view-models/cart';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [AuthService]
 })
 export class AppComponent implements OnInit {
-  loginStatus: boolean = false;
+  // Properties for Genres & User
   genres: Genre[];
   user: User = new User();
+  // Properties for communicating
+  status: boolean = false;
+ 
   currentuser = JSON.parse(localStorage.getItem('currentUser'));
   constructor ( 
     private authService: AuthService,
     private userService: UserService,
     private genreService: GenreService
-  ) {}
+  ) {
+    this.authService.status$.subscribe(_ => {
+      this.status = _;
+      if (this.status == true) {this.getUsers()}
+    })
+  }
   ngOnInit () {
     this.getGenres();
     if (this.currentuser) {
-      this.loginStatus = true;
+      this.status = true;
+      this.onAnnounce(this.status);
+      
       this.getUsers();
-    } else {}
-  }
-  mySetTrue(event:boolean): any {
-    this.loginStatus = event;
-    this.getUsers();
-    alert(`Da evoke mySetTrue()\n event = ${event}`);
+    } else {
+      this.onAnnounce(this.status);
+      console.log(`App onInit: loginStatus = ${this.status}`);
+    }
+
+
+    this.getStorage();
+    this.cart;
   }
   getGenres(): void {
     this.genreService.getGenres().subscribe(_ => this.genres = _);
   }
   getUsers(): void {
-    if(this.loginStatus == true) {
+    if(this.status == true) {
       this.userService.getUsers().subscribe(_ => 
         {
           this.user = _.user;
@@ -43,14 +60,25 @@ export class AppComponent implements OnInit {
         })
     } else {
       this.user = new User();
-      alert(`AppComponent: getUsers() says ${this.user.first}`);
+      alert(`AppComponent: getUsers() says user.first = ${this.user.first}`);
       console.log(`AppComponent getUsers(): Chua Login`);
     }
   }
   onLogout(): void {
     this.authService.logout();
-    this.loginStatus = false;
+    this.status = false;
+    this.onAnnounce(this.status);
     this.getUsers();
-    alert(`AppComponent: onLogout() says loginStatus = ${this.loginStatus}`);
+    alert(`AppComponent: onLogout() says status = ${this.status}`);
   }
+  onAnnounce(status: boolean) {
+    this.authService.announceStatus(status);
+  }
+  //Cart
+  
+  getStorage(): any {
+    return localStorage.getItem('currentCart');
+  }
+  cart: Cart = JSON.parse(this.getStorage());
+  
 }

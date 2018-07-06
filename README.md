@@ -15,6 +15,9 @@ work 1.0.7 - AppComponent can get User 'asynchronously' for Header/Navbar using 
     + (Saving codes purpose only, still need some fixing for login form)
 work 1.0.8 - Save codes
 work 1.0.9 - Remove GoggleMap for Angular from package.json, use iframe instead for Google Map
+work 1.0.10 - 
+    + AppComponent communicates with LoginComponent via Service to get login status (need improvement).
+    + Some function for Shopping Cart (draft only, need improvement).
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

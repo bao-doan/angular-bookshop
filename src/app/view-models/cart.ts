@@ -1,14 +1,13 @@
-import { Genre } from "./genre";
-import { Image } from "./image";
+import { Book } from "./book";
 
 export class Cart {
-    quantity: number;
-    previousPrice: number;
-    sellingPrice: number;
-
-    title: string;
-    author: string;
-    publisher: string;
-    sku: string;
-    images: Image = new Image();
+    items = new Array<Product>();
+    discount: number = 0;
+    total: number = 0;
+    amount: number = this.total - this.discount;
+}
+// Below are additional Classes used for Cart Class
+export class Product {
+    quantity: number = 0;
+    book = new Book();
 }

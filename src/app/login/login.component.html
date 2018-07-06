@@ -1,6 +1,9 @@
 
 <!-- Migrate -->
 <form [formGroup]="loginShopForm" (ngSubmit)="onSubmit()">
+    <div class="col-12">
+        This is app-login
+    </div>
     <div class="form-group mt-2">
         <label for="formLoginEmail" class="sr-only">Email address:</label>
         <input type="text" class="form-control text-truncate myInput-elegant-3" id="formLoginEmail" aria-describedby="emailHelp" placeholder="Email address" formControlName="username" required>

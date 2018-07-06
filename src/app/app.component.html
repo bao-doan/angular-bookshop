@@ -24,13 +24,24 @@
             <a href="#" class="btn dropdown-toggle myBtn-icon myOutline text-dark" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
-                <b class="badge badge-danger">5</b>
+                <b *ngIf="cart?.items" class="badge badge-danger">{{cart?.items.length}}</b>
             </a>
             <div class="dropdown-menu dropdown-menu-right myDropdown-cart rounded-0 p-3" aria-labelledby="dropdownCart">
                 <h5 class="mb-3">Your Cart:</h5>
-                <div class="myCart d-flex flex-column">
+                <div *ngIf="cart" class="myCart d-flex flex-column">
                     <div class="d-flex flex-column myCart-scroll mb-3">
-                        <div class="d-flex flex-row myCart-product p-2">
+                        <div *ngFor="let item of cart.items" class="d-flex flex-row myCart-product p-2">
+                            <div class="myCart-img mr-2">
+                                <img src="{{item.book.images.main}}" alt="">
+                            </div>
+                            <div class="myCart-item text-truncate">
+                                <h6 class="myCart-name">
+                                    <a href="pages/product-detail.html">{{item.book.title}}</a>
+                                </h6>
+                                <p class="myCart-price">{{item.quantity}} x {{item.book.sellingPrice | currency:'VND'}}</p>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex flex-row myCart-product p-2">
                             <div class="myCart-img mr-2">
                                 <img src="../assets/img/item/item-macbook-1.jpg" alt="">
                             </div>
@@ -73,18 +84,7 @@
                                 </h6>
                                 <p class="myCart-price">1 x $2,000</p>
                             </div>
-                        </div>
-                        <div class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="../assets/img/item/item-macbook-1.jpg" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
-                                </h6>
-                                <p class="myCart-price">1 x $2,000</p>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="d-flex flex-column myCart-bottom">
                         <span class="align-self-end mb-2">Total: $10,000</span>
@@ -178,12 +178,9 @@
     <div>
         <!-- <button (click)="mySetTrue()">Set True</button> -->
     </div>
-    <div>
-        loginStatus {{loginStatus}}
+    <div class="text-muted">
+        Login =  {{status}}
     </div>
-    <div>This is LoginComponent call as Child not RouterOutlet</div>
-    <app-login [loginStatus]="loginStatus" (loginStatusChange)="mySetTrue($event)"></app-login>
-    <div>Below is RouterOutlet</div>
     <router-outlet></router-outlet>
 </div>
 
@@ -198,7 +195,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <app-login [loginStatus]="loginStatus" (loginStatusChange)="mySetTrue($event)"></app-login>
+                <!-- <app-login></app-login> -->
             </div>
         </div>
     </div>
