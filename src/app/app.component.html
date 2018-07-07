@@ -39,6 +39,7 @@
                                     <a href="pages/product-detail.html">{{item.book.title}}</a>
                                 </h6>
                                 <p class="myCart-price">{{item.quantity}} x {{item.book.sellingPrice | currency:'VND'}}</p>
+                                <button class="myText-link pr-0">Remove</button>
                             </div>
                         </div>
                         <!-- <div class="d-flex flex-row myCart-product p-2">
@@ -97,22 +98,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="collapse navbar-collapse" id="collapseAccount">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" routerLink="/account">Account</a>
-                </li>
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" href="" data-toggle="modal" data-target="#formLogin">Log in</a>
-                </li>
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" routerLink="/signup">Sign up</a>
-                </li>
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" href="" data-toggle="modal" data-target="#formLogout">Log out</a>
-                </li>
-            </ul>
-        </div> -->
 </nav>
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <!-- Button Collapse -->
@@ -175,9 +160,6 @@
     </div>
 </nav>
 <div class="bg-white">
-    <div>
-        <!-- <button (click)="mySetTrue()">Set True</button> -->
-    </div>
     <div class="text-muted">
         Login =  {{status}}
     </div>
@@ -195,7 +177,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- <app-login></app-login> -->
+                <app-login></app-login>
             </div>
         </div>
     </div>

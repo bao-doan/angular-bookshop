@@ -143,7 +143,10 @@ export class ProductListComponent implements OnInit {
       console.log(`cartInit(): Da tao moi currentCart = ${JSON.stringify(this.currentCart)}`);
     }
   }
-  updateCart() { }
+  updateCart() { 
+    this.calculateCart();
+    this.setStorage();
+  }
   removeCart() {
     if (localStorage.getItem('currentCart')) {
       // localStorage.removeItem('currentCart');
@@ -155,6 +158,7 @@ export class ProductListComponent implements OnInit {
     } else {
       console.log('removeCart(): Chua co currentCart');
     }
+    
   }
   showCartInfo() {
  
@@ -180,16 +184,22 @@ export class ProductListComponent implements OnInit {
     this.calculateCart();
     this.setStorage();
   }
-  removeItem(book: Book) { 
+  removeItem(book: Book) {
+    const currentCart = this.currentCart;
+    let find_index = this.currentCart.items.findIndex((p) => { return p.book._id == book._id });
     let find_product = this.currentCart.items.find((p) => { return p.book._id == book._id });
     if (find_product) {
-      let find_index = this.currentCart.items.findIndex((p) => { return p.book._id == book._id });
+      
       this.currentCart.items[find_index].quantity = 0;
+      currentCart.items = this.currentCart.items.filter((i) =>  i.quantity > 0 );
+      console.log(`removeItem(): chon xoa ${book.title} co index = ${find_index}`)
       
     } else {
-      alert(`removeItem(): cannot remove because this product is not in Cart!`)
+      console.log(`removeItem(): cannot remove because this product is not in Cart!`)
     }
-    this.currentCart.items = this.currentCart.items.filter((i) => { i.quantity > 0 });
+    this.currentCart = currentCart;
+    this.calculateCart();
+    this.setStorage();
   }
   setDiscount(percent: number) {
     if (percent >= 0 && percent <= 1) {
@@ -207,14 +217,6 @@ export class ProductListComponent implements OnInit {
   }
   count = 0
   myarray = new Array<any>();
-  testPush(number: number) {
-    
-   
-      // this.count = this.count + 1;
-    
-    this.myarray.push(number);
-    alert(this.myarray);
-  }
   checkNonsese(book: Book): boolean {
     return this.currentCart.items.find((p) => { return p.book._id == book._id })?true:false;
   }

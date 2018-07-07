@@ -18,6 +18,7 @@ work 1.0.9 - Remove GoggleMap for Angular from package.json, use iframe instead 
 work 1.0.10 - 
     + AppComponent communicates with LoginComponent via Service to get login status (need improvement).
     + Some function for Shopping Cart (draft only, need improvement).
+work 1.0.11 - CartInit, AddItem, RemoveItem
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
