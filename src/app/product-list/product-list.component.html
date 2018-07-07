@@ -97,10 +97,6 @@
           <p class="text-muted">Displaying {{books2?.length || '0'}} {{checkPluralItems}} out of {{books?.length|| '0'}} {{checkPluralBooks}}</p>
         </div>
         <div class="col-12 mb-2">
-          <div class="float-left">
-            <button (click)="removeCart()">Remove Cart</button>
-            <button (click)="showCartInfo()">Show Cart Info</button>
-          </div>
           <div class="form-group float-right">
             <label class="sr-only" for="selectPagination">Items per Page</label>
             <select [(ngModel)]="step" (change)="onShowOption(step)" class="form-control myInput-elegant-3 w-auto" id="selectPagination"
@@ -125,7 +121,7 @@
                   <a href="{{book.images?.main}}" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
                     <i class="far fa-image"></i>
                   </a>
-                  <button (click)="addItem(book)" type="button" class="myCard-btn btn-danger" title="Add to Cart">
+                  <button (click)="addItem(book,1)" type="button" class="myCard-btn btn-danger" title="Add to Cart">
                     <i class="fas fa-cart-plus"></i>
                   </button>
                   <span class="myCard-outofstock-text">Out of stock</span>
@@ -139,9 +135,6 @@
               <h6 class="text-center">
                 <s *ngIf="book.previousPrice > book.sellingPrice" class="text-danger text-small text-monospace">{{book.previousPrice | currency:'VND'}}</s> {{book.sellingPrice | currency:'VND'}}</h6>
             </div>
-          </div>
-          <div>
-            <button *ngIf="checkNonsese(book)" (click)="removeItem(book)">Remove</button>
           </div>
         </div>
         <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3">

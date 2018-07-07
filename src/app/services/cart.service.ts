@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Subject }    from 'rxjs';
 import { Book } from '../view-models/book';
 import { Cart } from '../view-models/cart';
 import { Product } from '../view-models/cart';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,10 +11,17 @@ export class CartService {
   currentCart: Cart;
   cartProduct = new Product();
   discount: number;
+
+  private cartSource = new Subject<string>();
+  cartSource$ = this.cartSource.asObservable();
+  setCartSource(string: string) {
+    this.cartSource.next(string);
+  }
+
   constructor() { }
-  
+
   // For localStorage methods
-  getStorage(): any {
+  getStorage(): string {
     return localStorage.getItem('currentCart');
   }
   removeStorage(): void {
@@ -20,9 +29,10 @@ export class CartService {
   }
   setStorage(): void {
     localStorage.setItem('currentCart', JSON.stringify(this.currentCart));
+    this.setCartSource(JSON.stringify(this.currentCart));
   }
 
-  // For Shoping Cart
+  // For Shoping Cart methods
   cartInit() {
     console.log(`cartInit(): getStorage = ${this.getStorage() ? true : false}`);
     if (this.getStorage()) {
@@ -35,6 +45,7 @@ export class CartService {
     }
   }
   updateCart() { 
+    this.countItemInCart();
     this.calculateCart();
     this.setStorage();
   }
@@ -57,17 +68,18 @@ export class CartService {
     this.calculateCart();
     alert(`cart_length = ${cart_length}\n${cart_list}\nTotal = ${this.currentCart.total}\nDiscount = ${this.currentCart.discount}\nAmount = ${this.currentCart.amount}`);
   }
-  addItem(book: Book) {
+  addItem(book: Book, inputQuantity: number) {
     const cartProduct = new Product();
     let find_product = this.currentCart.items.find((p) => { return p.book._id == book._id });
     let find_index = this.currentCart.items.findIndex((p) => { return p.book._id == book._id });
     if (find_product) {
-      this.currentCart.items[find_index].quantity += 1;
+      this.currentCart.items[find_index].quantity += inputQuantity;
     } else {
       cartProduct.book = book;
-      cartProduct.quantity = 1;
+      cartProduct.quantity = inputQuantity;
       this.currentCart.items.push(cartProduct);
     }
+    this.countItemInCart();
     this.calculateCart();
     this.setStorage();
   }
@@ -83,6 +95,7 @@ export class CartService {
       console.log(`removeItem(): cannot remove because this product is not in Cart!`)
     }
     this.currentCart = currentCart;
+    this.countItemInCart();
     this.calculateCart();
     this.setStorage();
   }
@@ -99,10 +112,15 @@ export class CartService {
     this.currentCart.total = total;
     this.setDiscount(0.3);
     this.currentCart.amount = this.currentCart.total - this.currentCart.discount;
+    this.setStorage();
   }
-  count = 0
-  myarray = new Array<any>();
-  checkNonsese(book: Book): boolean {
-    return this.currentCart.items.find((p) => { return p.book._id == book._id })?true:false;
+  private countItemSource = new Subject<number>();
+  countItem$ = this.countItemSource.asObservable();
+  countItemInCart() {
+    let count: number = 0;
+    for (let i = 0; i < this.currentCart.items.length; i++) {
+      count += this.currentCart.items[i].quantity;
+    }
+    this.countItemSource.next(count);
   }
 }

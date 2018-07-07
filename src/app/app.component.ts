@@ -2,8 +2,10 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, HostListener
 import { AuthService } from './auth/auth.service';
 import { User } from './view-models/user';
 import { Genre } from './view-models/genre';
+import { Book } from './view-models/book';
 import { UserService } from './services/user.service';
 import { GenreService } from './services/genre.service';
+import { CartService } from './services/cart.service';
 
 import { Cart } from './view-models/cart';
 import { Product } from './view-models/cart';
@@ -25,12 +27,17 @@ export class AppComponent implements OnInit {
   constructor ( 
     private authService: AuthService,
     private userService: UserService,
-    private genreService: GenreService
+    private genreService: GenreService,
+    private cartService: CartService
   ) {
+    // For get User
     this.authService.status$.subscribe(_ => {
       this.status = _;
       if (this.status == true) {this.getUsers()}
     })
+    // For Shopping Cart
+    this.cartService.cartSource$.subscribe(_ => this.cart = JSON.parse(_))
+    this.cartService.countItem$.subscribe(_ => this.countItem = _)
   }
   ngOnInit () {
     this.getGenres();
@@ -43,10 +50,10 @@ export class AppComponent implements OnInit {
       this.onAnnounce(this.status);
       console.log(`App onInit: loginStatus = ${this.status}`);
     }
-
-
-    this.getStorage();
+    this.cartService.cartInit();
+    this.cartService.getStorage();
     this.cart;
+    this.cartService.countItemInCart();
   }
   getGenres(): void {
     this.genreService.getGenres().subscribe(_ => this.genres = _);
@@ -74,11 +81,11 @@ export class AppComponent implements OnInit {
   onAnnounce(status: boolean) {
     this.authService.announceStatus(status);
   }
-  //Cart
-  
-  getStorage(): any {
-    return localStorage.getItem('currentCart');
+
+  //For Shopping Cart (instance)
+  protected cart: Cart = JSON.parse(this.cartService.getStorage());
+  removeItem(book: Book) {
+    this.cartService.removeItem(book);
   }
-  cart: Cart = JSON.parse(this.getStorage());
-  
+  protected countItem: number;
 }

@@ -18,25 +18,25 @@
     <div class="row py-3 mb-2 bg-light">
         <!-- Advanced Carousel-->
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-            <div class="row">
+            <div *ngIf="book" class="row">
                 <div class="col-12 mb-2">
                     <div id="carouselProductIndicator" class="carousel slide myCarousel" data-ride="carousel">
                         <div class="carousel-inner myCarousel-img-view">
-                            <div class="carousel-item active">
-                                <a href="../assets/img/item/item-camera-1.jpg" data-toggle="lightbox" data-gallery="gallery">
-                                    <img class="d-block w-100" src="../assets/img/item/item-camera-1.jpg" alt="First slide">
+                            <div  class="carousel-item active">
+                                <a href="{{book.images.main}}" data-toggle="lightbox" data-gallery="gallery">
+                                    <img class="d-block w-100" src="{{book.images.main}}" alt="First slide">
                                 </a>
                             </div>
-                            <div class="carousel-item">
+                            <!-- <div class="carousel-item">
                                 <a href="../assets/img/item/item-camera-2.jpg" data-toggle="lightbox" data-gallery="gallery">
                                     <img class="d-block w-100" src="../assets/img/item/item-camera-2.jpg" alt="Second slide">
                                 </a>
-                            </div>
-                            <div class="carousel-item"> 
+                            </div> -->
+                            <!-- <div class="carousel-item"> 
                                 <a href="../assets/img/item/item-camera-3.jpg" data-toggle="lightbox" data-gallery="gallery">
                                     <img class="d-block w-100" src="../assets/img/item/item-camera-3.jpg" alt="Third slide">
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                         <a class="carousel-control-prev" href="#carouselProductIndicator" role="button" data-slide="prev">
                            <i class="fas fa-angle-left" aria-hidden="true"></i>
@@ -50,23 +50,23 @@
                 </div>
                 <div class="col-12 d-flex flex-row flex-wrap myCarousel-img-nav">
                     <div data-target="#carouselProductIndicator" data-slide-to="0" class="active">
+                        <img src="{{book.images.main}}" alt="" class="w-100">
+                    </div>
+                    <!-- <div data-target="#carouselProductIndicator" data-slide-to="1" class="">
                         <img src="../assets/img/item/item-camera-2.jpg" alt="" class="w-100">
-                    </div>
-                    <div data-target="#carouselProductIndicator" data-slide-to="1" class="">
-                        <img src="../assets/img/item/item-camera-2.jpg" alt="" class="w-100">
-                    </div>
-                    <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
+                    </div> -->
+                    <!-- <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
                         <img src="../assets/img/item/item-camera-3.jpg" alt="" class="w-100">
-                    </div>
-                    <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
+                    </div> -->
+                    <!-- <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
                         <img src="../assets/img/item/item-camera-3.jpg" alt="" class="w-100">
-                    </div>
-                    <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
+                    </div> -->
+                    <!-- <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
                         <img src="../assets/img/item/item-camera-3.jpg" alt="" class="w-100">
-                    </div>
-                    <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
+                    </div> -->
+                    <!-- <div data-target="#carouselProductIndicator" data-slide-to="2" class="">
                         <img src="../assets/img/item/item-camera-3.jpg" alt="" class="w-100">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -117,21 +117,11 @@
             <div class="row">
                 <div class="col-5 col-sm-6 col-md-4 col-lg-3 col-xl-3 pr-0">
                     <label for="productQuantity" class="">Quantity</label>
-                    <input type="number" id="productQuantity" class="form-control " name="" value="1">
-                </div>
-                <div class="col-5 col-sm-6 col-md-4 col-lg-3 col-xl-3 pr-0">
-                    <label for="productColor" class="">Color</label>
-                    <select class="form-control myInput-elegant-2" id="productColor">
-                        <option>White</option>
-                        <option>Gray</option>
-                        <option>Black</option>
-                        <option>Gold</option>
-                        <option>Rose</option>
-                    </select>
+                    <input type="number" [(ngModel)]="inputQuantity" id="productQuantity" class="form-control ">
                 </div>
             </div>
-            <a href="#" class="btn myBtn-fill mt-3" title="Add to Cart">
-                <i class="fas fa-cart-plus"></i> Add to Cart</a>
+            <button (click)="addItem(book)" class="btn myBtn-fill mt-3" title="Add to Cart">
+                <i class="fas fa-cart-plus"></i> Add to Cart</button>
             <!-- <div class="w-25">
                 
             </div> -->
