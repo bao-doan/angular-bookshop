@@ -31,7 +31,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let item of cart.items" #items class="h-auto">
+                      <tr *ngFor="let item of cart.items" class="h-auto">
                           <td>
                               <div class="myImg-thumbnail">
                                   <img src="{{item.book.images.main}}" class="w-100" alt="">
@@ -46,20 +46,21 @@
                           <!-- <td>{{item.book.author}}</td> -->
                           <td>
                               <label for="formCartQuantity" class="sr-only"></label>
-                              <input [(ngModel)]="item.quantity" type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="">
+                              <input [(ngModel)]="item.quantity" min="0" oninput="this.value = Math.abs(this.value)" type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="">
+                              <p>QTY: {{item.quantity}}</p>
                           </td>
                           <td><b>{{item.book.sellingPrice * item.quantity | currency:'VND'}}</b></td>
                       </tr>
-                      
-                  </tbody>
-              </table>
-          </div>
+                    </tbody>
+                </table>
+            </div>
+            <p><span *ngFor="let item of cart.items">{{item.quantity}}</span></p>
           <div class="form-group w-50 align-self-end">
               <label for="formCartDiscount"><b>Apply Discount:</b></label>
               <input [(ngModel)]="discount_input" type="text" class="form-control text-uppercase" id="formCartDiscount" aria-describedby="" placeholder="">
-              <span>Use code: <code>{{discount_code}}</code> ({{discount_percent | percent:minFractionDigits}} Discount)</span>
+              <span>Use code: <code>{{cartService.discount_code}}</code> ({{cartService.discount_percent | percent:minFractionDigits}} Discount)</span>
             </div>
-          <button (click)="updateCart(items)" type="button" class="btn myBtn-fill align-self-end">Update Cart</button>
+          <button (click)="updateCart()" type="button" class="btn myBtn-fill align-self-end">Update Cart</button>
       </div>
       <div class="col-12 col-md-4 d-flex flex-column">
           <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Cart Totals</h5>

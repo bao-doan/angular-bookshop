@@ -36,8 +36,7 @@ export class AppComponent implements OnInit {
       if (this.status == true) {this.getUsers()}
     })
     // For Shopping Cart
-    this.cartService.cartSource$.subscribe(_ => this.cart = JSON.parse(_))
-    this.cartService.countItem$.subscribe(_ => this.countItem = _)
+    this.cartService.cartSource$.subscribe(_ => this.cart = JSON.parse(_));
   }
   ngOnInit () {
     this.getGenres();
@@ -87,5 +86,4 @@ export class AppComponent implements OnInit {
   removeItem(book: Book) {
     this.cartService.removeItem(book);
   }
-  protected countItem: number;
 }
