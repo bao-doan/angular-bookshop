@@ -21,33 +21,34 @@
           <div class="table-responsive mb-2">
               <table class="table border">
                   <thead>
-                      <tr class=" ">
+                      <tr class="">
                           <th scope="col"> </th>
-                          <th class="myTable-product" scope="col">Product</th>
+                          <th class="" scope="col">Product</th>
                           <th scope="col">Price</th>
-                          <th scope="col">Color</th>
+                          <!-- <th scope="col">Author</th> -->
                           <th scope="col">Quantity</th>
                           <th scope="col">Total</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="myTable-row">
+                      <tr *ngFor="let item of cart.items" #items class="h-auto">
                           <td>
                               <div class="myImg-thumbnail">
-                                  <img src="../assets/img/item/item-camera-1.jpg" class="w-100" alt="">
+                                  <img src="{{item.book.images.main}}" class="w-100" alt="">
                               </div>
                           </td>
                           <th class="myTable-product" scope="row">
-                              <h6 class="mb-1"><a href="" class="myText-link" routerLink="product-detail">Canon EOS 2018 New Edition Limited 100% New US Imported</a></h6>
-                              <a href="#" class="text-small text-muted"><small><i class="far fa-trash-alt"></i> Remove</small></a>
+                              <h6 class="mb-1"><a href="" class="myText-link-2" routerLink="/product-detail/{{item.book._id}}">{{item.book.title}}</a></h6>
+                              <small class="d-block">{{item.book.author}}</small>
+                              <button (click)="removeItem(item.book)" class="text-small text-muted myText-link-2 pl-0"><small><i class="far fa-trash-alt"></i> Remove</small></button>
                           </th>
-                          <td>$450</td>
-                          <td>Black</td>
+                          <td><small><s *ngIf="item.book.previousPrice > item.book.sellingPrice" class="text-danger">{{item.book.previousPrice | currency:'VND'}}</s></small> <span class="d-block">{{item.book.sellingPrice | currency:'VND'}}</span></td>
+                          <!-- <td>{{item.book.author}}</td> -->
                           <td>
                               <label for="formCartQuantity" class="sr-only"></label>
-                              <input type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="" value="1" name="">
+                              <input [(ngModel)]="item.quantity" type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="">
                           </td>
-                          <td><b>$450</b></td>
+                          <td><b>{{item.book.sellingPrice * item.quantity | currency:'VND'}}</b></td>
                       </tr>
                       
                   </tbody>
@@ -55,10 +56,10 @@
           </div>
           <div class="form-group w-50 align-self-end">
               <label for="formCartDiscount"><b>Apply Discount:</b></label>
-              <input type="text" class="form-control text-uppercase" id="formCartDiscount" aria-describedby="" placeholder="">
-              <span>Use code: BOOKISFRIEND</span>
+              <input [(ngModel)]="discount_input" type="text" class="form-control text-uppercase" id="formCartDiscount" aria-describedby="" placeholder="">
+              <span>Use code: <code>{{discount_code}}</code> ({{discount_percent | percent:minFractionDigits}} Discount)</span>
             </div>
-          <button type="submit" class="btn myBtn-fill align-self-end">Update Cart</button>
+          <button (click)="updateCart(items)" type="button" class="btn myBtn-fill align-self-end">Update Cart</button>
       </div>
       <div class="col-12 col-md-4 d-flex flex-column">
           <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Cart Totals</h5>
@@ -66,19 +67,19 @@
                 <tbody>
                   <tr>
                     <th scope="row">Products</th>
-                    <td class="text-right">$1350</td>
+                    <td class="text-right">{{cart.total | currency:'VND'}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Discount</th>
-                    <td class="text-right">-$0</td>
+                    <td class="text-right">- {{cart.discount | currency:'VND'}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">TOTAL</th>
-                    <td class="text-right"><b>$1370</b></td>
+                    <th scope="row">AMOUNT</th>
+                    <td class="text-right"><b>{{cart.amount | currency:'VND'}}</b></td>
                   </tr>
                 </tbody>
           </table>
-          <a href="" class="btn myBtn-fill align-self-end" target="_blank" routerLink="/checkout">Checkout</a>
+          <a href="" class="btn myBtn-fill align-self-end" routerLink="/checkout">Checkout</a>
       </div>
   </div>
 </div>

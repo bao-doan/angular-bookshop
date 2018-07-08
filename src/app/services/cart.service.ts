@@ -123,4 +123,10 @@ export class CartService {
     }
     this.countItemSource.next(count);
   }
+  setDiscountPercent(input: string, code: string, percent: number): number {
+    return (input == code) ? percent : 0;
+  }
+  setDiscountAmount(input: string, code: string, percent: number): number {
+    return this.currentCart.total * this.setDiscountPercent(input, code, percent);
+  }
 }

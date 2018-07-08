@@ -20,6 +20,7 @@ work 1.0.10 -
     + Some function for Shopping Cart (draft only, need improvement).
 work 1.0.11 - CartInit, AddItem, RemoveItem
 work 1.0.12 - CartService is used to handle functions, Dropdown cart can get Observables when Item is added.
+work 1.0.13 - Working on CartComponent
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
