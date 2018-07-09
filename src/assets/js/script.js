@@ -1,6 +1,20 @@
 // Bootstrap 4 Carousel
 $(document).ready(function () {
+  // For Carousel
   $('.carousel').carousel({ interval: 0 });
+  // For Dropdown-menu with .keep-open will not close on click
+  $('.dropdown-menu.keep-open').on('click', function (e) {
+    e.stopPropagation();
+  });
+  
+  if(1) {
+    $('body').attr('tabindex', '0');
+  }
+  else {
+    alertify.confirm().set({'reverseButtons': true});
+    alertify.prompt().set({'reverseButtons': true});
+  }
+  
 
 });
 // Jumptop button
@@ -25,3 +39,6 @@ $(document).on("click", '[data-toggle="lightbox"]', function(event) {
   event.preventDefault();
   $(this).ekkoLightbox();
 });
+
+
+

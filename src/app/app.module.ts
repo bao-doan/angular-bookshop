@@ -24,6 +24,7 @@ import { AuthService } from './auth/auth.service';
 import { JwtInterceptor } from './_helpers';
 import { fakeBackendProvider } from './_helpers';
 import { UserService } from './services/user.service';
+import { LoginLayoutComponent } from './login-layout/login-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserService } from './services/user.service';
     AboutComponent,
     HeaderComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,

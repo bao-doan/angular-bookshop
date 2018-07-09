@@ -6,6 +6,7 @@ import { HomeComponent } from '../home/home.component';
 import { AccountComponent } from '../account/account.component';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
+import { LoginLayoutComponent } from '../login-layout/login-layout.component';
 import { CartComponent } from '../cart/cart.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   {path: 'register', component: RegisterComponent },
-  {path: 'login', component: LoginComponent },
+  // {path: 'login', component: LoginComponent },
+  {path: 'login', component: LoginLayoutComponent },
   {path: 'cart', component: CartComponent },
   {path: 'checkout', component: CheckoutComponent,canActivate: [AuthGuard] },
   {path: 'order-detail', component: OrderDetailComponent, canActivate: [AuthGuard] },

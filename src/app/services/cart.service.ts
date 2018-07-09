@@ -17,7 +17,7 @@ export class CartService {
 
   // public discount_input: string = '';
   public discount_code: string = 'ILOVEBOOK';
-  public discount_percent: number = 55/100;
+  public discount_percent: number = 10/100;
 
   constructor() { }
 
@@ -45,11 +45,6 @@ export class CartService {
       console.log(`cartInit(): Da tao moi currentCart = ${JSON.stringify(this.currentCart)}`);
     }
   }
-  updateCartPlus() {
-    this.countItemInCart();
-    // this.calculateCart();
-    this.setStorage();
-  }
   removeCart() {
     if (localStorage.getItem('currentCart')) {
       this.removeStorage();
@@ -60,15 +55,6 @@ export class CartService {
       console.log('removeCart(): Chua co currentCart');
     }
   }
-  // showCartInfo() {
-  //   let cart_length = this.currentCart.items.length;
-  //   let cart_list: string = '';
-  //   for (let i = 0; i < cart_length; i++) {
-  //     cart_list += `${this.currentCart.items[i].quantity} x ${this.currentCart.items[i].book.title}\n`
-  //   }
-  //   this.currentCart.total = this.setTotal();
-  //   alert(`cart_length = ${cart_length}\n${cart_list}\nTotal = ${this.currentCart.total}\nDiscount = ${this.currentCart.discount}\nAmount = ${this.currentCart.amount}`);
-  // }
   addItem(book: Book, inputQuantity: number) {
     const cartProduct = new Product();
     let find_product = this.currentCart.items.find((p) => { return p.book._id == book._id });
@@ -97,20 +83,10 @@ export class CartService {
     }
     this.currentCart = currentCart;
     this.countItemInCart();
-    // this.calculateCart();
     this.currentCart.total = this.setTotal();
     this.setStorage();
   }
 
-  calculateCart() {
-    let total: number = 0;
-    for (let i = 0; i < this.currentCart.items.length; i++) {
-      total += this.currentCart.items[i].book.sellingPrice * this.currentCart.items[i].quantity;
-    }
-    this.currentCart.total = total;
-    // this.currentCart.amount = this.currentCart.total - this.currentCart.discount;
-    this.setStorage();
-  }
   calculateAll() {
     let cart = this.currentCart; // For shorthand typing
 
@@ -132,7 +108,6 @@ export class CartService {
     for (let i = 0; i < this.currentCart.items.length; i++) {
       total += this.currentCart.items[i].book.sellingPrice * this.currentCart.items[i].quantity;
     }
-    // this.currentCart.total = total;
     return total;
   }
   
@@ -156,7 +131,5 @@ export class CartService {
     this.currentCart.book_counted = count;
     this.setStorage();
   }
-
-  
 
 }

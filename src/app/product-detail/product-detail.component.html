@@ -134,17 +134,17 @@
                 <div class="nav nav-tabs myTab-nav" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link" id="tabDescriptionLabel" data-toggle="tab" href="#tabDescription" role="tab" aria-controls="tabDescription"
                         aria-selected="true">Description</a>
-                    <a class="nav-item nav-link" id="tabSpecificationLabel" data-toggle="tab" href="#tabSpecification" role="tab" aria-controls="tabSpecification"
+                    <a class="nav-item nav-link active" id="tabSpecificationLabel" data-toggle="tab" href="#tabSpecification" role="tab" aria-controls="tabSpecification"
                         aria-selected="false">Specification</a>
-                    <a class="nav-item nav-link active" id="tabReviewLabel" data-toggle="tab" href="#tabReview" role="tab" aria-controls="tabReview"
+                    <a class="nav-item nav-link" id="tabReviewLabel" data-toggle="tab" href="#tabReview" role="tab" aria-controls="tabReview"
                         aria-selected="false">Reviews</a>
                 </div>
             </nav>
             <div class="tab-content" id="tabAccount">
-                <div *ngIf="book.fullDescription" [innerHTML]="book.fullDescription" class="tab-pane myPost fade py-3" id="tabDescription" role="tabpanel" aria-labelledby="tabDescriptionLabel">
+                <div *ngIf="book" [innerHTML]="book.fullDescription" class="tab-pane myPost fade py-3" id="tabDescription" role="tabpanel" aria-labelledby="tabDescriptionLabel">
                     
                 </div>
-                <div  *ngIf="book" class="tab-pane fade py-2" id="tabSpecification" role="tabpanel" aria-labelledby="tabSpecificationLabel">
+                <div  *ngIf="book" class="tab-pane fade py-2 show active" id="tabSpecification" role="tabpanel" aria-labelledby="tabSpecificationLabel">
                     <h4 class="my-4">SPECIFICATION</h4>
                     <table class="table table-striped">
                         <tbody>
@@ -187,7 +187,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div  *ngIf="book.fullDescription" class="tab-pane fade py-2 show active" id="tabReview" role="tabpanel" aria-labelledby="tabReviewLabel">
+                <div   *ngIf="book" class="tab-pane fade py-2" id="tabReview" role="tabpanel" aria-labelledby="tabReviewLabel">
                     <h4 class="my-4">REVIEWS</h4>
                     <div class="form-group">
                         <label for="formReviewMessage" class="">Comment:</label>

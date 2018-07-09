@@ -40,7 +40,7 @@ export class ProductDetailComponent implements OnInit {
     this.bookService.getBook(id)
       .subscribe(_ => {
         this.book = _;
-        this.showRelatedBook(_ , 3);
+        // this.showRelatedBook(_ , 3);
       });
   }
   inputQuantity: number = 1;
@@ -48,18 +48,18 @@ export class ProductDetailComponent implements OnInit {
     this.cartService.addItem(book, this.inputQuantity);
   }
   relatedBook: Book[];
-  showRelatedBook(book: Book, step: number) {
-    let find_book = this.books.find((_) => book._id == _._id);
-    let index = this.books.findIndex((_) => book._id == _._id);
-    step = 3;
-    if (find_book) {
-      if (index + step > this.books.length - 1) {
+  // showRelatedBook(book: Book, step: number) {
+  //   let find_book = this.books.find((_) => book._id == _._id);
+  //   let index = this.books.findIndex((_) => book._id == _._id);
+  //   step = 3;
+  //   if (find_book) {
+  //     if (index + step > this.books.length - 1) {
 
-        this.relatedBook = this.books.slice(index, index + step);
-      } else {
-        this.relatedBook = this.books.slice(index, index + step);
-      }
+  //       this.relatedBook = this.books.slice(index, index + step);
+  //     } else {
+  //       this.relatedBook = this.books.slice(index, index + step);
+  //     }
 
-    }
-  }
+  //   }
+  // }
 }

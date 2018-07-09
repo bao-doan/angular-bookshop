@@ -71,7 +71,8 @@
                       <div class="col-6 pr-1">
                         <div class="form-group">
                           <label for="formSignupFirstname" class="sr-only">First Name:</label>
-                          <input [(ngModel)]="user.first" [ngModelOptions]="{standalone: true}" type="text" class="form-control myInput-elegant-3" id="formSignupFirstname" aria-describedby="" placeholder="First Name" [ngModelOptions]="{standalone: true}">
+                          <input [(ngModel)]="user.first" [ngModelOptions]="{standalone: true}" type="text" class="form-control myInput-elegant-3"
+                            id="formSignupFirstname" aria-describedby="" placeholder="First Name" [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                       <div class="col-6">
@@ -83,67 +84,10 @@
 
                     </div>
                     <div class="row">
-                      <div class="col-4 pr-0">
-                        <div class="form-group w-100">
-                          <label for="formAccountBirthday" class="sr-only">Day</label>
-                          <select class="form-control myInput-elegant-2" id="formAccountBirthday">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
-                            <option>24</option>
-                            <option>25</option>
-                            <option>26</option>
-                            <option>27</option>
-                            <option>28</option>
-                            <option>29</option>
-                            <option>30</option>
-                            <option>31</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-4 pr-0">
-                        <div class="form-group w-100">
-                          <label for="formAccountBirthmonth" class="sr-only">Month</label>
-                          <select class="form-control myInput-elegant-2" id="formAccountBirthmonth">
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-4">
+                      <div class="col-12">
                         <div class="form-group">
-                          <label for="formAccountBirthyear" class="sr-only">BirthYear</label>
-                          <input type="number" value="1995" class="form-control myInput-elegant-2" id="formAccountBirthyear" placeholder="Year">
+                          <label for="formSignupBirthday" class="sr-only">Birthday:</label>
+                          <input type="date" class="form-control myInput-elegant-3" id="formSignupBirthday" aria-describedby="" placeholder="Last Name">
                         </div>
                       </div>
                     </div>
@@ -338,10 +282,14 @@
         <div class="tab-pane fade" id="tabMainCart" role="tabpanel" aria-labelledby="tabMainCartLabel">
           <div class="row d-flex flex-column align-items-center">
             <div class="col-7 col-sm-6 col-md-5 col-lg-3 text-center">
-              <img src="../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd" class="w-100 myImg-fit mb-2">
-              <a href="cart.html" class="btn myBtn-fill" target="_blank">Go to Cart</a>
+              <img src="../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd"
+                class="w-100 myImg-fit mb-2">
+              <a href="" class="btn myBtn-fill" routerLink="/cart">Go to Cart</a>
             </div>
           </div>
+          <!-- <div class="row"> -->
+          <app-cart></app-cart>
+          <!-- </div> -->
         </div>
         <div class="tab-pane fade" id="tabMainOrder" role="tabpanel" aria-labelledby="tabMainOrderLabel">
           <nav>

@@ -1,106 +1,114 @@
 <nav class="navbar navbar-light bg-white">
-    <a href="" class="myBrand-logo" routerLink="/home">Brand</a>
-    <div class="d-flex flex-row pr-3">
-        <div class="dropdown">
-            <a href="#" class="btn myBtn-icon myOutline text-dark" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i>
-                <i class="fas fa-angle-down"></i>
-            </a>
-            <div class="dropdown-menu myDropdown-floatup dropdown-menu-right" aria-labelledby="dropdownUser">
-                <span *ngIf="user.first" class="dropdown-item pb-2" href="">Welcome
-                    <b>{{user.first}}</b>
-                </span>
-                <a *ngIf="user.first" class="dropdown-item" href="" routerLink="/account">
-                    <i class="fas fa-user-circle"></i> Account</a>
-                <a *ngIf="user.first" class="dropdown-item" href="#" data-toggle="modal" data-target="#formLogout">
-                    <i class="fas fa-sign-out-alt"></i> Logout</a>
-                <a *ngIf="!user.first" class="dropdown-item" href="" data-toggle="modal" data-target="#formLogin">
-                    <i class="fas fa-sign-in-alt"></i> Login</a>
-                <a *ngIf="!user.first" class="dropdown-item" href="#" routerLink="/register">
-                    Or Register</a>
+    <!-- <div class="container-fluid"> -->
+        <!-- <div class="row w-100 bg-warning justify-content-between"> -->
+            <div class="col-auto d-none d-sm-block">
+                <a href="" class="myBrand-logo" routerLink="/home">Brand</a>
+
             </div>
-        </div>
-        <div class="dropdown">
-            <a href="#" class="btn dropdown-toggle myBtn-icon myOutline text-dark" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <i class="fas fa-shopping-cart"></i>
-                <b *ngIf="cart.book_counted" [hidden]="!cart.book_counted" class="badge badge-danger">{{cart.book_counted}}</b>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right myDropdown-cart rounded-0 p-3" aria-labelledby="dropdownCart">
-                <h5 class="mb-3">Your Cart:</h5>
-                
-                <div *ngIf="cart" class="myCart d-flex flex-column">
-                    <div class="d-flex flex-column myCart-scroll mb-3">
-                        <div *ngFor="let item of cart.items" class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="{{item.book.images.main}}" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="" routerLink="/product-detail/{{item.book._id}}">{{item.book.title}}</a>
-                                </h6>
-                                <p class="myCart-price">{{item.quantity}} x {{item.book.sellingPrice | currency:'VND'}}</p>
-                                <button (click)="removeItem(item.book)" class="myText-link pr-0">Remove</button>
-                            </div>
-                        </div>
-                        <!-- <div class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="../assets/img/item/item-macbook-1.jpg" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
-                                </h6>
-                                <p class="myCart-price">1 x $2,000</p>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="../assets/img/item/item-macbook-1.jpg" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
-                                </h6>
-                                <p class="myCart-price">1 x $2,000</p>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="../assets/img/item/item-macbook-1.jpg" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
-                                </h6>
-                                <p class="myCart-price">1 x $2,000</p>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row myCart-product p-2">
-                            <div class="myCart-img mr-2">
-                                <img src="../assets/img/item/item-macbook-1.jpg" alt="">
-                            </div>
-                            <div class="myCart-item text-truncate">
-                                <h6 class="myCart-name">
-                                    <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
-                                </h6>
-                                <p class="myCart-price">1 x $2,000</p>
-                            </div>
-                        </div> -->
+            <div class="col-auto d-flex flex-row">
+                <div class="dropdown">
+                    <a href="#" class="btn myOutline text-dark" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span [class.d-none]="!user.first">{{user.first}}</span>
+                        <i class="fas fa-user"></i>
+                        <i [class.d-none]="!user.first" class="fas fa-angle-down"></i>
+                    </a>
+                    <div class="dropdown-menu myDropdown-floatup dropdown-menu-right" aria-labelledby="dropdownUser">
+                        <span *ngIf="user.first" class="dropdown-item pb-2" href="">Welcome
+                            <b>{{user.first}}</b>
+                        </span>
+                        <a *ngIf="user.first" class="dropdown-item" href="" routerLink="/account">
+                            <i class="fas fa-user-circle"></i> Account</a>
+                        <a *ngIf="user.first" class="dropdown-item" href="#" data-toggle="modal" data-target="#formLogout">
+                            <i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a *ngIf="!user.first" class="dropdown-item" href="" data-toggle="modal" data-target="#formLogin">
+                            <i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a *ngIf="!user.first" class="dropdown-item" href="#" routerLink="/register">
+                            Or Register</a>
                     </div>
-                    <div class="d-flex flex-column myCart-bottom">
-                        <span class="align-self-end mb-2">Total: {{ cart.total | currency:'VND'}}</span>
-                        <span class="align-self-end mb-2">Discount: -{{ cart.discount | currency:'VND'}}</span>
-                        <span class="align-self-end mb-2">Amount: {{ cart.amount | currency:'VND'}}</span>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <a href="" class="btn myBtn-fill mr-2" routerLink="/cart">View Cart</a>
-                            <a href="" class="btn myBtn-fill" routerLink="/checkout">Checkout</a>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="btn dropdown-toggle myBtn-icon myOutline text-dark" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fas fa-shopping-cart"></i>
+                        <b *ngIf="cart.book_counted" [class.d.none]="!cart.book_counted" class="badge badge-danger">{{cart.book_counted}}</b>
+                    </a>
+                    <div class="dropdown-menu keep-open dropdown-menu-right myDropdown-cart rounded-0 p-3" aria-labelledby="dropdownCart">
+                        <h5 class="mb-3">Your Cart:</h5>
+
+                        <div *ngIf="cart" class="myCart d-flex flex-column">
+                            <div class="d-flex flex-column myCart-scroll mb-3">
+                                <div *ngFor="let item of cart.items" class="d-flex flex-row myCart-product p-2">
+                                    <div class="myCart-img mr-2">
+                                        <img src="{{item.book.images.main}}" alt="">
+                                    </div>
+                                    <div class="myCart-item text-truncate">
+                                        <h6 class="myCart-name">
+                                            <a href="" routerLink="/product-detail/{{item.book._id}}">{{item.book.title}}</a>
+                                        </h6>
+                                        <p class="myCart-price">{{item.quantity}} x {{item.book.sellingPrice | currency:'VND'}}</p>
+                                        <button (click)="removeItem(item.book)" class="myText-link pr-0">Remove</button>
+                                    </div>
+                                </div>
+                                <!-- <div class="d-flex flex-row myCart-product p-2">
+                                                    <div class="myCart-img mr-2">
+                                                        <img src="../assets/img/item/item-macbook-1.jpg" alt="">
+                                                    </div>
+                                                    <div class="myCart-item text-truncate">
+                                                        <h6 class="myCart-name">
+                                                            <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
+                                                        </h6>
+                                                        <p class="myCart-price">1 x $2,000</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row myCart-product p-2">
+                                                    <div class="myCart-img mr-2">
+                                                        <img src="../assets/img/item/item-macbook-1.jpg" alt="">
+                                                    </div>
+                                                    <div class="myCart-item text-truncate">
+                                                        <h6 class="myCart-name">
+                                                            <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
+                                                        </h6>
+                                                        <p class="myCart-price">1 x $2,000</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row myCart-product p-2">
+                                                    <div class="myCart-img mr-2">
+                                                        <img src="../assets/img/item/item-macbook-1.jpg" alt="">
+                                                    </div>
+                                                    <div class="myCart-item text-truncate">
+                                                        <h6 class="myCart-name">
+                                                            <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
+                                                        </h6>
+                                                        <p class="myCart-price">1 x $2,000</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row myCart-product p-2">
+                                                    <div class="myCart-img mr-2">
+                                                        <img src="../assets/img/item/item-macbook-1.jpg" alt="">
+                                                    </div>
+                                                    <div class="myCart-item text-truncate">
+                                                        <h6 class="myCart-name">
+                                                            <a href="pages/product-detail.html">Macbook Macbook Macbook Macbook</a>
+                                                        </h6>
+                                                        <p class="myCart-price">1 x $2,000</p>
+                                                    </div>
+                                                </div> -->
+                            </div>
+                            <div class="d-flex flex-column myCart-bottom">
+                                <span class="align-self-end mb-2">Total: {{ cart.total | currency:'VND'}}</span>
+                                <span class="align-self-end mb-2">Discount: -{{ cart.discount | currency:'VND'}}</span>
+                                <span class="align-self-end mb-2">Amount: {{ cart.amount | currency:'VND'}}</span>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="" class="btn myBtn-fill mr-2" routerLink="/cart">View Cart</a>
+                                    <a href="" class="btn myBtn-fill" routerLink="/checkout">Checkout</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
 </nav>
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <!-- Button Collapse -->
@@ -164,7 +172,7 @@
 </nav>
 <div class="bg-white">
     <div class="text-muted">
-        Login =  {{status}}
+        Login = {{status}}
     </div>
     <router-outlet></router-outlet>
 </div>
@@ -180,7 +188,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <app-login></app-login>
+                <app-login [formId]="formId"></app-login>
             </div>
         </div>
     </div>
