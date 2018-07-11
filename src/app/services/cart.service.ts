@@ -84,6 +84,7 @@ export class CartService {
     this.currentCart = currentCart;
     this.countItemInCart();
     this.currentCart.total = this.setTotal();
+    this.calculateAll();
     this.setStorage();
   }
 
@@ -93,7 +94,7 @@ export class CartService {
     cart.total = this.setTotal();
     cart.discount = cart.discount;
     cart.amount = cart.total - cart.discount;
-    cart.shipping = this.setShipping();
+    cart.shipping = cart.shipping;
     cart.payable = cart.total - cart.discount + cart.shipping; 
 
   }
@@ -119,8 +120,9 @@ export class CartService {
   setDiscountAmount(): number {
     return 0;
   }
-  setShipping(): number {
-    return 0;
+  setShipping(input: number): number {
+    return input;
+    // maybe I'll delete this method
   }
   
   countItemInCart() {

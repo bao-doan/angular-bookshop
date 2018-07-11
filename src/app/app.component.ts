@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
     if (this.status) {
       this.userService.getUsers().subscribe(_ => {
         this.user = _.user;
-        alert(`Welcome back ${this.user.first.bold()} ${this.user.last.bold()}!\nHave fun shopping with us.`);
+        // alert(`Welcome back ${this.user.first.bold()} ${this.user.last.bold()}!\nHave fun shopping with us.`);
       })
     } else {
       this.user = new User();

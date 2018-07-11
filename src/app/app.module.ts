@@ -25,6 +25,8 @@ import { JwtInterceptor } from './_helpers';
 import { fakeBackendProvider } from './_helpers';
 import { UserService } from './services/user.service';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppCustomModule } from './app-custom/app-custom.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { LoginLayoutComponent } from './login-layout/login-layout.component';
     HeaderComponent,
     RegisterComponent,
     LoginComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { LoginLayoutComponent } from './login-layout/login-layout.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AppCustomModule,
     // AppBootstrapModule,
   ],
   providers: [

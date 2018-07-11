@@ -25,6 +25,8 @@ work 1.0.14 - Some update functions in CartService.
 work 1.0.15 - 
     + Added LoginService do Observing login Status & handle login functions.
     + Fix id conflict between LoginComponent called by AppComponent & one call by RouterOutlet.
+
+work 1.0.16 - add OrderService, working on Order (saving purpose only).
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

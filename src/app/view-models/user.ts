@@ -1,4 +1,5 @@
 export class User {
+    _id: string;
     first: string;
     last: string;
     phone: string;

@@ -480,3 +480,9 @@ body {
     right: 10px;
     transform: translateY(-50%);
 }
+.mySearch {
+    position: absolute;;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+}
