@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
   inputQuantity: number = 1;
-  protected cart: Cart = JSON.parse(this.cartService.getStorage());
+  cart: Cart = JSON.parse(this.cartService.getStorage());
 
   discount_input: string = '';
 

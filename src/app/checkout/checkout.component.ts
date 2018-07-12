@@ -15,7 +15,7 @@ import { Cart } from '../view-models/cart';
 export class CheckoutComponent implements OnInit {
   shipping: number = 0;
   shippingDefaultIndex: number;
-  protected shippingOptions = [
+  shippingOptions = [
     { description: 'Free Shipping', fee: 0 },
     { description: 'Standard Shipping', fee: 15000 },
     { description: 'Urgent Shipping', fee: 30000 },
@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
 
   order: Order = new Order();
   user: User = new User();
-  cart: Cart;
+  cart: Cart = JSON.parse(this.cartService.getStorage());
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
@@ -48,30 +48,31 @@ export class CheckoutComponent implements OnInit {
   // change value when user click a radio
   onSelectShiping(number: number) {
     this.shipping = number;
+    this.cart.shipping = this.shipping
+    this.cartService.updateCart(this.cart);
   }
   addOrder(): void {
+    this.updateCart();
       if (this.cart) {
-        const book = new BOOK();
-        let order = this.order;
-        order._user = this.user._id;
-        // order.books._book = this.cart.;
+        
+        // const order = new Order();
+        this.order._user = this.user._id;
         for (let i=0; i< this.cart.items.length; i++) {
+          const book = new BOOK();
           book._book = this.cart.items[i].book._id;
           book.quantity = this.cart.items[i].quantity;
           book.price = this.cart.items[i].book.sellingPrice;
-          order.books.push(book);
+          this.order.books.push(book);
         }
-        order.total = this.cart.payable;
-
-    
+        this.order.total = this.cart.payable;
       }
-      this.orderService.addOrder(this.order).subscribe(data => { console.log(`Da dat hang thanh cong`) });
+      this.orderService.addOrder(this.order).subscribe(data => { alert(`Da dat hang thanh cong\nUserID: ${data._user}\nThanh tien: ${data.total}\nSo luong sach: ${data.books.length}`) });
   }
   getUser(): void {
     this.userService.getUsers().subscribe(_ => this.user = _.user);
   }
-  setShipping() {
+  updateCart() {
     this.cart.shipping = this.shipping;
-    
+    this.cartService.updateCart(this.cart);
   }
 }

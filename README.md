@@ -1,4 +1,4 @@
-# MyProjectAngular
+# AngularBookshop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
@@ -27,6 +27,9 @@ work 1.0.15 -
     + Fix id conflict between LoginComponent called by AppComponent & one call by RouterOutlet.
 
 work 1.0.16 - add OrderService, working on Order (saving purpose only).
+work 1.0.17 - 
+    + Add Order, get Order.
+    + Added root/docs folder for rendering app.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

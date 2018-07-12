@@ -16,7 +16,7 @@ const httpOptions = {
 export class GenreService {
   name:string;
   ten: string;
-  genresUrl = 'http://green-web-bookshop.herokuapp.com/api/genres';
+  genresUrl = 'https://green-web-bookshop.herokuapp.com/api/genres';
   
   constructor(private http: HttpClient) { }
   getGenres(): Observable<Genre[]> {

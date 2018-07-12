@@ -282,7 +282,7 @@
         <div class="tab-pane fade" id="tabMainCart" role="tabpanel" aria-labelledby="tabMainCartLabel">
           <div class="row d-flex flex-column align-items-center">
             <div class="col-7 col-sm-6 col-md-5 col-lg-3 text-center">
-              <img src="../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd"
+              <img src="../../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd"
                 class="w-100 myImg-fit mb-2">
               <a href="" class="btn myBtn-fill" routerLink="/cart">Go to Cart</a>
             </div>
@@ -306,35 +306,19 @@
                   <thead>
                     <tr>
                       <th scope="col">Order number</th>
-                      <th scope="col">Date</th>
+                      <!-- <th scope="col">Date</th> -->
                       <th scope="col">Total</th>
-                      <th scope="col">Status</th>
+                      <!-- <th scope="col">Status</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr *ngFor="let order of orders">
                       <th scope="row">
-                        <a href="" target="_blank" routerLink="/order-detail">#18050101</a>
+                        <a href="" target="_blank" routerLink="/order-detail">{{order._id}}</a>
                       </th>
-                      <td>01-Jan-2018</td>
-                      <td>$1,000</td>
-                      <td>Complete</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <a href="order-detail.html" target="_blank">#18050101</a>
-                      </th>
-                      <td>01-Jan-2018</td>
-                      <td>$1,000</td>
-                      <td>Complete</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <a href="order-detail.html" target="_blank">#18050101</a>
-                      </th>
-                      <td>01-Jan-2018</td>
-                      <td>$1,000</td>
-                      <td>Complete</td>
+                      <!-- <td>01-Jan-2018</td> -->
+                      <td>{{order.total}}</td>
+                      <!-- <td>Complete</td> -->
                     </tr>
                   </tbody>
                 </table>

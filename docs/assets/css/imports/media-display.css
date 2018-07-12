@@ -1,0 +1,11 @@
+@media (min-width: 576px) {
+    .myDisplay-sm {
+        display: inline;
+    }
+}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {}
+@media (min-width: 1200px) {}
+.myDisplay-sm,.myDisplay-md, .myDisplay-lg, .myDisplay-xl {
+    display: none;
+}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Book } from '../view-models/book';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -11,9 +12,11 @@ const httpOptions = {
 
 
 export class BookService {
-  private booksUrl = 'http://green-web-bookshop.herokuapp.com/api/books';
+  private booksUrl = 'https://green-web-bookshop.herokuapp.com/api/books';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router) { }
   /** GET api-s from the server */
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.booksUrl);
@@ -35,4 +38,5 @@ getBook(id: string): Observable<Book> {
   const url = `${this.booksUrl}/${id}`;
   return this.http.get<Book>(url);
 }
+
 }

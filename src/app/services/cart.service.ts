@@ -16,7 +16,7 @@ export class CartService {
   cartSource$ = this.cartSource.asObservable();
 
   // public discount_input: string = '';
-  public discount_code: string = 'ILOVEBOOK';
+  public discount_code: string = 'WEDNESDAY';
   public discount_percent: number = 10/100;
 
   constructor() { }
@@ -30,7 +30,7 @@ export class CartService {
   }
   setStorage(): void {
     localStorage.setItem('currentCart', JSON.stringify(this.currentCart));
-    this.cartSource.next(JSON.stringify(this.currentCart))
+    this.cartSource.next(JSON.stringify(this.currentCart));
     console.log('Da setStorage()');
   }
 

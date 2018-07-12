@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'http://green-web-ecommerce.herokuapp.com/v1/users/';
+  private userUrl = 'https://green-web-ecommerce.herokuapp.com/v1/users/';
 
   constructor(private http: HttpClient) { }
   getUsers(): Observable<Users> {

@@ -9,7 +9,6 @@ import { CartService } from './services/cart.service';
 import { LoginService } from './services/login.service';
 import { Cart } from './view-models/cart';
 import { Product } from './view-models/cart';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +22,7 @@ export class AppComponent implements OnInit {
   status: boolean = false;
   currentuser = localStorage.getItem('currentUser');
   // For Shopping Cart (dropdown)
-  protected cart: Cart = JSON.parse(this.cartService.getStorage());
+  cart: Cart = JSON.parse(this.cartService.getStorage());
   // For avoiding form's id conflict
   formId: string = 'app';
   constructor(

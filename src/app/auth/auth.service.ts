@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  private loginUrl = 'http://green-web-ecommerce.herokuapp.com/v1/users/login';
+  private loginUrl = 'https://green-web-ecommerce.herokuapp.com/v1/users/login';
 
   constructor(
     private http: HttpClient,
@@ -23,6 +23,7 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('currentUser');
+    const id = 
     this.router.navigate(['/login']);
   }
 
