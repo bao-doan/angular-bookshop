@@ -13,6 +13,8 @@ import { Cart } from '../view-models/cart';
 })
 
 export class CheckoutComponent implements OnInit {
+  componentTitle = 'Checkout';
+  checkoutConfirm = false;
   shipping: number = 0;
   shippingDefaultIndex: number;
   shippingOptions = [
@@ -51,22 +53,37 @@ export class CheckoutComponent implements OnInit {
     this.cart.shipping = this.shipping
     this.cartService.updateCart(this.cart);
   }
+  checkConfirm() {
+    if (this.checkoutConfirm) {
+      this.addOrder();
+    } else {
+      let confirmation = confirm(`You have to confirm your order (Check me out)\nAre you sure to make order now?`);
+      if (confirmation) {
+        this.checkoutConfirm = true;
+        this.checkConfirm();
+      }
+    }
+  }
   addOrder(): void {
     this.updateCart();
-      if (this.cart) {
-        
-        // const order = new Order();
-        this.order._user = this.user._id;
+      if (this.cart.items.length > 0) {
+        this.order._user._id = this.user._id;
         for (let i=0; i< this.cart.items.length; i++) {
           const book = new BOOK();
-          book._book = this.cart.items[i].book._id;
+          book._book._id = this.cart.items[i].book._id;
           book.quantity = this.cart.items[i].quantity;
           book.price = this.cart.items[i].book.sellingPrice;
           this.order.books.push(book);
         }
         this.order.total = this.cart.payable;
+        this.orderService.addOrder(this.order).subscribe(data => { 
+          alert(`Da dat hang thanh cong\nThanh tien: ${data.total}\nSo luong sach: ${data.books.length}`);
+          this.cartService.removeCart();
+        });
+      } else {
+        alert('You have no item in Shopping Cart');
       }
-      this.orderService.addOrder(this.order).subscribe(data => { alert(`Da dat hang thanh cong\nUserID: ${data._user}\nThanh tien: ${data.total}\nSo luong sach: ${data.books.length}`) });
+      
   }
   getUser(): void {
     this.userService.getUsers().subscribe(_ => this.user = _.user);

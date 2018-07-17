@@ -1,0 +1,133 @@
+const mongoose = require('mongoose');
+const types = mongoose.Schema.Types;
+
+// Book Schema
+const bookSchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    genre: {
+        _id: {
+            type: types.ObjectId,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    publisher: {
+        type: String,
+        required: true
+    },
+    pages: Number,
+    weight: Number,
+    size: {
+        width: Number,
+        height: Number,
+        depth: Number
+    },
+    releaseDate: Date,
+    shortDescription: String,
+    fullDescription: String,
+    images: {
+        main: {
+            type: String,
+            require: true
+        },
+        first: String,
+        second: String,
+    },
+    sku: {
+        type: String
+    },
+    previousPrice: {
+        type: Number,
+        require: true,
+    },
+    sellingPrice: {
+        type: Number,
+        require: true,
+    },
+    createDate: {
+        type: Date,
+        default: Date.now
+    },
+
+    comments: [{
+        _user: {
+            type: types.ObjectId,
+            ref: 'User'
+        },
+        commentBody: String,
+        createdDate: {
+            type: Date,
+            default: Date.now
+        },
+        rate: Number
+    }],
+
+});
+
+bookSchema.index({ title: 'text', author: 'text' }, { name: 'BookTextIndex', weights: { title: 10, author: 1 } });
+
+
+const Book = module.exports = mongoose.model('Book', bookSchema);
+
+// Get Books
+module.exports.getBooks = (callback, limit) => {
+    Book.find()
+        .limit(limit)
+        .populate('comments._user', 'name email avatarUrl')
+        .exec(callback);
+}
+
+// Get Book
+module.exports.getBookById = (id, callback) => {
+    Book.findById(id)
+        .populate('comments._user', 'name email avatarUrl')
+        .exec(callback);
+}
+module.exports.getBookByGenre = (genreId, callback) => {
+    var query = { "genre._id": genreId };
+    Book.find({ "genre._id": genreId })
+        .populate('comments._user', 'name email avatarUrl')
+        .exec(callback)
+}
+module.exports.getBookByAuthor = (authorName, callback) => {
+    var query = { "author": authorName }
+    Book.find(query)
+        .populate('comments._user', 'name email avatarUrl')
+        .exec(callback)
+}
+
+// Add Book
+module.exports.addBook = (book, callback) => {
+    Book.create(book, callback);
+}
+
+// Update Book
+module.exports.updateBook = (id, book, options, callback) => {
+    var query = { _id: id };
+    Book.findOneAndUpdate(query, book, { new: true })
+        .populate('comments._user', 'name email avatarUrl')
+        .exec(callback)
+}
+
+// Delete Book
+module.exports.removeBook = (id, callback) => {
+    var query = { _id: id };
+    Book.remove(query, callback);
+}
+// Search Book
+module.exports.searchBook = (searchTerm, callback) => {
+    var regex = new RegExp(searchTerm, "i")
+    var query = { $or: [{ author: regex }, { title: regex }] }
+    Book.find(query, callback)
+}
+

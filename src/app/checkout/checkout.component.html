@@ -1,121 +1,49 @@
+<app-breadcrumb [breadcrumbTitle]="componentTitle"></app-breadcrumb>
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 mb-3">
       <form>
         <div class="mb-3">
-            <h6>Choose a Shipping Method:</h6>
-            <!-- <div class="form-check">
-              <input (click)="onSelectShiping(shippingOption1)" class="form-check-input" type="radio" name="shipping" id="shipping-standard" [value]="shippingOption1" checked>
-              <label class="form-check-label" for="shipping-standard">
-                Standard Shipping ({{(shippingOption1==0)?'Free':shippingOption1 | currency: 'VND'}})
-              </label>
-            </div>
-            <div class="form-check">
-              <input (click)="onSelectShiping(shippingOption2)" class="form-check-input" type="radio" name="shipping" id="shipping-fast" [value]="shippingOption2">
-              <label class="form-check-label" for="shipping-fast">
-                Fast Shipping ({{shippingOption2 | currency: 'VND'}})
-              </label>
-            </div> -->
-            <div *ngFor="let option of shippingOptions; let idx = index" class="form-check">
-              <input (click)="onSelectShiping(option.fee)" class="form-check-input" type="radio" name="shipping" id="shipping_{{shippingOptions.indexOf(option)}}" [value]="option.fee" [checked]="idx === shippingDefaultIndex">
-              <label class="form-check-label" for="shipping_{{shippingOptions.indexOf(option)}}">
-                {{option.description}} ({{(option.fee==0)?'Free':option.fee | currency: 'VND'}})
-              </label>
-            </div>
-            <div>Value = {{shipping}}</div>
+          <h5 class="mb-3">Choose a Shipping Method:</h5>
+          <div *ngFor="let option of shippingOptions; let idx = index" class="form-check py-2">
+            <input (click)="onSelectShiping(option.fee)" class="form-check-input" type="radio" name="shipping" id="shipping_{{shippingOptions.indexOf(option)}}"
+              [value]="option.fee" [checked]="idx === shippingDefaultIndex">
+            <label class="form-check-label" for="shipping_{{shippingOptions.indexOf(option)}}">
+              {{option.description}} ({{(option.fee==0)?'Free':option.fee | currency: 'VND'}})
+            </label>
+          </div>
         </div>
-        <div class="mb-3">
-            <h6>Choose a Payment Method:</h6>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="payment" id="payment-cash" value="payment1" checked>
-              <label class="form-check-label" for="payment-cash">
-                Cash on Delivery (COD)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="payment" id="payment-card" value="payment2" data-toggle="collapse" data-target="collapseCard">
-              <label class="form-check-label" for="payment-card">
-                Visa/Master Cart
-              </label>
-            </div>
-        </div>
-        <!-- <div class="col-12"> -->
-            <div class="collapse" id="collapseCard">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="formPaymentCardNumber" class="sr-only">Card Number</label>
-                    <input type="number" value="" class="form-control myInput-elegant-2" id="formPaymentCardNumber" placeholder="Card Number">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="formPaymentCardCVV" class="sr-only">Security Code</label>
-                    <input type="number" value="" class="form-control myInput-elegant-2" id="formPaymentCardCVV" placeholder="Security Code (CVV)">
-                  </div>
-                </div>
-                <div class="col-6 pr-0">
-                  <div class="form-group w-100">
-                    <label for="formPaymentExpireMonth" class="">Expire Month</label>
-                    <select class="form-control myInput-elegant-2" id="formPaymentExpireMonth">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                      <option>11</option>
-                      <option>12</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="formPaymentExpireYear" class="">Expire Year</label>
-                    <input type="number" value="2020" class="form-control myInput-elegant-2" id="formPaymentExpireYear" placeholder="">
-                  </div>
-                </div>
-                <!-- Doing -->
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="formPaymentCardHolder" class="sr-only">Cardholder</label>
-                    <input type="text" class="form-control myInput-elegant-3" id="formPaymentCardHolder" aria-describedby="" placeholder="Cardholder's Name">
-                  </div>
-                </div>
-              </div>
-            </div>
-          <!-- </div> -->
-
-        
       </form>
     </div>
-    <div class="col-12 col-md-4 d-flex flex-column">
-        <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Order Information</h5>
-        <table class="table">
-              <tbody>
-                <tr>
-                  <th scope="row">Products</th>
-                  <td class="text-right">{{cart?.total || 0}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Discount</th>
-                  <td class="text-right">-{{cart?.discount || 0}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Shipping</th>
-                  <td class="text-right">{{cart?.shipping || 0}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">PAYABLE</th>
-                  <td class="text-right"><b>{{cart?.payable || 0}}</b></td>
-                </tr>
-              </tbody>
-        </table>
-        <button (click)="addOrder()" class="btn myBtn-fill align-self-end">Order now</button>
+    <div class="col-12 col-md-4 d-flex flex-column mb-3">
+      <h5 class="bg-secondary text-white py-2 pl-2 mb-0">Order Information</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Products</th>
+            <td class="text-right">{{cart?.total || 0 | currency:'VND'}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Discount <span *ngIf="cart.discount">({{cartService.discount_percent | percent}})</span></th>
+            <td class="text-right">- {{cart?.discount || 0 | currency:'VND'}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Shipping</th>
+            <td class="text-right">{{cart?.shipping || 0 | currency:'VND'}}</td>
+          </tr>
+          <tr>
+            <th scope="row">PAYABLE</th>
+            <td class="text-right">
+              <b>{{cart?.payable || 0 | currency:'VND'}}</b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-group form-check align-self-end">
+        <input [(ngModel)]="checkoutConfirm" type="checkbox" class="form-check-input" id="checkoutConfirm">
+        <label class="form-check-label" for="checkoutConfirm">Check me out</label>
+      </div>
+      <button (click)="checkConfirm()" class="btn myBtn-fill align-self-end">Order now</button>
     </div>
   </div>
 </div>

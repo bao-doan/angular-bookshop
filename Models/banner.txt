@@ -1,0 +1,29 @@
+const mongoose = require('mongoose');
+
+// Genre Schema
+const bannerSchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    imageUrl: {
+        type: String,
+        equired: true
+    },
+    description: {
+        type: String
+    },
+    url: {
+        type: String
+    },
+    createDate: {
+        type: Date,
+        default: Date.now
+    }
+});
+const Banner = module.exports = mongoose.model('Banner', bannerSchema);
+
+// Get Genres
+module.exports.getBanners = (callback, limit) => {
+    Banner.find(callback).limit(limit);
+}

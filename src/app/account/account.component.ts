@@ -11,6 +11,7 @@ import { Order } from '../view-models/order';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  componentTitle = 'Account';
   user: User = new User();
   orders: Order[];
   constructor(

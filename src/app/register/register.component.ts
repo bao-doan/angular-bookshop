@@ -8,9 +8,11 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  componentTitle = 'Register';
   registerForm: FormGroup;
   objectUser: UserRegister = new UserRegister();
   checkbox: boolean = false;
+  submitted: boolean;
   error;
   constructor(private userService: UserService) { }
 
@@ -34,27 +36,27 @@ export class RegisterComponent implements OnInit {
   get check() { return this.registerForm.get('check'); }
 
   onSaveRegister(): void {
+    this.submitted = (this.registerForm.value.check)? true:false;
     let x = this.objectUser;
     let y = this.registerForm.value;
     if (y.check == false) {
       alert('You have to agree with our Terms of Service and Privacy Policy');
     } else if (y.password !== y.confirm) {
       alert(`You have to confirm correct password that you've typed`);
-    } else {
+    } else if (y.first && y.last && y.phone && y.email && y.password && y.confirm) {
       x.first = y.first;
       x.last = y.last;
       x.phone = y.phone;
       x.email = y.email;
       x.password = y.password;
       this.addUsers();
-      if (x.first !== null) {
-        alert(`Sucessfully registerd: ${x.first} ${x.last} as a User`);
-      }
+    } else {
+      alert('Cannot register: some fields are missing.')
     }
   }
   addUsers(): void {
     this.userService.addUser(this.objectUser).subscribe(
-      data => {},
+      data => {alert(`Sucessfully registerd: ${this.objectUser.first} ${this.objectUser.last} as a User`); },
       error => {
         this.error = error;
       }

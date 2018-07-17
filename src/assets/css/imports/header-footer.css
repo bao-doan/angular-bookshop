@@ -1,9 +1,6 @@
 /* Header | Footer | Body Buffer */
 body {
-    /* font-family: 'Open Sans', sans-serif; */
-    /* font-family: 'Abel', sans-serif; */
-    /* font-family: 'Cantarell', sans-serif; */
-    /* font-family: 'Cabin', sans-serif; */
+    min-width: 320px;
 }
 @media (max-width: 576px) {
     .myCollapse-sm-center {
@@ -19,6 +16,14 @@ body {
         display: flex;
         justify-content: center; 
         /* Use: This let product cards play center when SM, play left when above SM */
+    }
+}
+@media (max-width: 400px) {
+    .myDropdown-cart {
+        width: 280px;
+    }
+    .myDropdown-cart .myBtn-fill {
+        min-width: 110px;
     }
 }
 .myBody-buffer {
@@ -150,9 +155,10 @@ body {
     border-radius: 0px;
 }
 /* Dropdown Cart */
+
 .myDropdown-cart {
-    z-index: 10000;
-    width: 330px;
+    z-index: 5000;
+    max-width: 330px;
 }
 .myCart-img img {
     width: 70px;
@@ -220,7 +226,7 @@ body {
 }
 
 .myCarousel img {
-    min-height: 200px;
+    min-height: 230px;
     width: 100%;
     object-fit: cover;
 }
@@ -275,7 +281,7 @@ body {
     height: auto;
     overflow: hidden;
     min-height: 200px;
-    max-height: 30vh;
+    /* max-height: 30vh; */
 
 }
 .myCard-upper-img img{
@@ -480,9 +486,49 @@ body {
     right: 10px;
     transform: translateY(-50%);
 }
-.mySearch {
+/* .mySearch {
     position: absolute;;
     top: 100%;
     left: 0;
     z-index: 1000;
+} */
+.mySearch {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 2000;
+    /* height: 300px; */
+    /* overflow-Y: scroll; */
+    overflow-X: hidden;
+
+    
+}
+.mySearch li {
+    border: none;
+    border-radius: 0;
+}
+.mySearch li:not(:first-child) {
+    padding-left: 30px;
+    
+}
+/* Overlay */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    /* background-color: rgba(0,0,0, 0.5);  */
+    /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    display: none;
+    transition: all 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    opacity: 0;
+}
+.overlay-show {
+    display: block;
 }

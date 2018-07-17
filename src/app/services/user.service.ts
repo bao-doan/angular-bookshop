@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../view-models/user';
-import { Users } from '../view-models/users';
-import { UserRegister } from '../view-models/user.register';
+import { Users, UserRegister, User } from '../view-models';
+import { catchError } from '../../../node_modules/rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
@@ -21,7 +20,4 @@ export class UserService {
   addUser(users: UserRegister): Observable<UserRegister> {
     return this.http.post<UserRegister>(this.userUrl, users, httpOptions);
   }
-  
- 
-
 }

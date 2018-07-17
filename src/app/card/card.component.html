@@ -1,0 +1,33 @@
+<div class="myCard-product">
+  <div class="myCard-upper myCursor-pointer mb-2" title="Author:&#10;&#34;{{book.author}}&#34;">
+    <div class="myCard-upper-img">
+      <img class="card-img" src="{{book.images?.main}}" alt="product">
+    </div>
+    <div class="myCard-upper-overlay">
+      <span *ngIf="book.previousPrice > book.sellingPrice" class="myCard-promote btn-danger"><small>- {{(1 - book.sellingPrice/book.previousPrice) | percent}}</small></span>
+      <span *ngIf="book.previousPrice < book.sellingPrice" class="myCard-promote btn-success"><small class="text-white">New</small></span>
+      <div class="d-flex justify-content-around">
+        <a href="{{book.images?.main}}" data-toggle="lightbox" title="View larger image" class="myCard-btn btn-danger">
+          <i class="far fa-image"></i>
+        </a>
+        <button (click)="addItem(book,1)" type="button" class="myCard-btn btn-danger" title="Add to Cart">
+          <i class="fas fa-cart-plus"></i>
+        </button>
+        <span class="myCard-outofstock-text">Out of stock</span>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <h6 class="text-center text-small myCursor-pointer mb-1" routerLink="/product-detail/{{book._id}}">
+      <a class="myText-link-2" routerLink="/product-detail/{{book._id}}">{{book.title}}</a>
+    </h6>
+    <h6 class="text-center text-danger mb-1">
+      {{book.sellingPrice | currency:'VND'}}
+    </h6>
+    <h6 *ngIf="book.previousPrice > book.sellingPrice" class="text-center">
+      <s class="text-muted">
+        <small>{{book.previousPrice | currency:'VND'}}</small>
+      </s>
+    </h6>
+  </div>
+</div>

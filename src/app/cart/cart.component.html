@@ -1,5 +1,5 @@
 <!-- Main Content -->
-<div class="container-fluid myTitle py-3">
+<!-- <div class="container-fluid myTitle py-3">
   <div class="container">
       <div class="row flex-column">
           <h3 class="">SHOPPING CART</h3>
@@ -13,11 +13,12 @@
           </nav>
       </div>
   </div>
-</div>
+</div> -->
+<app-breadcrumb [breadcrumbTitle]="componentTitle"></app-breadcrumb>
 <div class="container">
   <div class="row">
       <div class="col-12 col-md-8 d-flex flex-column mb-3">
-          <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Shopping Products</h5>
+          <h5 class="bg-secondary text-white py-2 pl-2 mb-0">Shopping Products</h5>
           <div class="table-responsive mb-2">
               <table class="table border">
                   <thead>
@@ -47,14 +48,12 @@
                           <td>
                               <label for="formCartQuantity" class="sr-only"></label>
                               <input (change)="updateCart()" [(ngModel)]="item.quantity" min="0" oninput="this.value = Math.abs(this.value)" type="number" class="form-control myInput-cart-quantity" id="formCartQuantity" aria-describedby="">
-                              <p>QTY: {{item.quantity}}</p>
                           </td>
                           <td><b>{{item.book.sellingPrice * item.quantity | currency:'VND'}}</b></td>
                       </tr>
                     </tbody>
                 </table>
             </div>
-            <p><span *ngFor="let item of cart.items">{{item.quantity}}</span></p>
           <div class="form-group w-50 align-self-end">
               <label for="formCartDiscount"><b>Apply Discount:</b></label>
               <input [(ngModel)]="discount_input" type="text" class="form-control text-uppercase" id="formCartDiscount" aria-describedby="" placeholder="">
@@ -63,7 +62,7 @@
           <button (click)="updateCart()" type="button" class="btn myBtn-fill align-self-end">Apply Code</button>
       </div>
       <div class="col-12 col-md-4 d-flex flex-column">
-          <h5 class="bg-secondary text-white py-2 pl-2 mb-4">Cart Totals</h5>
+          <h5 class="bg-secondary text-white py-2 pl-2 mb-0">Cart Totals</h5>
           <table class="table">
                 <tbody>
                   <tr>
@@ -71,7 +70,7 @@
                     <td class="text-right">{{cart.total | currency:'VND'}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Discount</th>
+                    <th scope="row">Discount <span *ngIf="cart.discount">({{cartService.discount_percent | percent}})</span></th>
                     <td class="text-right">- {{cart.discount | currency:'VND'}}</td>
                   </tr>
                   <tr>

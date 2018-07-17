@@ -1,1 +1,98 @@
-<p>HomeComponent hoat dong</p>
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-12 px-0">
+            <app-loading *ngIf="!banners"></app-loading>
+            <div *ngIf="banners" id="carousel-book" class="carousel slide myCarousel" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div *ngFor="let banner of banners" [class.active]="banners.indexOf(banner) == 0" class="carousel-item">
+                        <a href="" routerLink="/product-list">
+                            <img class="d-block w-100" src="{{banner.imageUrl}}" alt="{{banner.title}}">
+                        </a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel-book" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-book" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-12">
+            <nav>
+                <div class="nav nav-tabs myTab-nav" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="tabTopSale" data-toggle="tab" href="#navTopSale" role="tab" aria-controls="navTopSale"
+                        aria-selected="true">Top sales</a>
+                    <a class="nav-item nav-link " id="tabNewProduct" data-toggle="tab" href="#navNewProduct" role="tab" aria-controls="navNewProduct"
+                        aria-selected="false">New Books</a>
+                    <a class="nav-item nav-link" id="tabFeaturedProduct" data-toggle="tab" href="#navFeaturedProduct" role="tab" aria-controls="navFeaturedProduct"
+                        aria-selected="false">Featured Books</a>
+                </div>
+            </nav>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="navTopSale" role="tabpanel" aria-labelledby="tabTopSale">
+                    <app-loading *ngIf="!books"></app-loading>
+                    <div class="row py-3">
+                        <div class="row py-3">
+                            <div *ngFor="let book of books_sale" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <app-card [book]="book"></app-card>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="navNewProduct" role="tabpanel" aria-labelledby="tabNewProduct">
+                    <app-loading *ngIf="!books"></app-loading>
+                    <div class="row py-3">
+                        <div *ngFor="let book of books_new" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <app-card [book]="book"></app-card>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navFeaturedProduct" role="tabpanel" aria-labelledby="tabFeaturedProduct">
+                    <app-loading *ngIf="!books"></app-loading>
+                    <div class="row py-3">
+                        <div class="row py-3">
+                            <div *ngFor="let book of books_featured" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <app-card [book]="book"></app-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-12 px-0">
+            <h5 class="bg-secondary text-white py-3 pl-3">SÁCH VĂN HỌC</h5>
+        </div>
+    </div>
+    <app-loading *ngIf="!books"></app-loading>
+    <div class="row">
+        <div *ngFor="let book of books" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <app-card [book]="book"></app-card>
+        </div>
+    </div>
+</div>
+<div *ngIf="cart.items.length > 0"  class="container">
+    <div class="row mb-3">
+        <div class="col-12 px-0">
+            <h5 class="bg-secondary text-white py-3 pl-3">TRONG GIỎ HÀNG
+                <b *ngIf="cart.book_counted" [class.d.none]="!cart.book_counted" class="badge badge-danger">{{cart.book_counted}}</b>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of cart.items" class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <app-card [book]="item.book"></app-card>
+        </div>
+    </div>
+</div>

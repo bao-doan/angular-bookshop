@@ -30,6 +30,7 @@ work 1.0.16 - add OrderService, working on Order (saving purpose only).
 work 1.0.17 - 
     + Add Order, get Order.
     + Added root/docs folder for rendering app.
+work 1.0.18 - Save codes
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

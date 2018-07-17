@@ -7,8 +7,7 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  lat: number = 10.8231;
-  lng: number = 106.6297;
+  componentTitle = 'Contact';
   constructor() { }
 
   ngOnInit() {

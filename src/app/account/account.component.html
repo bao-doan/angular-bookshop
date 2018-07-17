@@ -1,5 +1,5 @@
 <!-- Main Content -->
-<div class="container-fluid myTitle py-3">
+<!-- <div class="container-fluid myTitle py-3">
   <div class="container">
     <div class="row flex-column">
       <h3 class="">MY ACCOUNT</h3>
@@ -13,8 +13,8 @@
       </nav>
     </div>
   </div>
-</div>
-
+</div> -->
+<app-breadcrumb [breadcrumbTitle]="componentTitle"></app-breadcrumb>
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-3 mb-3">
@@ -57,28 +57,17 @@
                 <div class="row">
                   <div class="col-12 col-md-10 col-lg-6">
                     <div class="row">
-                      <!-- <div class="col-4">
-                        <div class="form-group w-100">
-                          <label for="formSignupGender" class="sr-only">Gender</label>
-                          <select class="form-control myInput-elegant-2" id="formSignupGender">
-                            <option>Mr.</option>
-                            <option>Ms.</option>
-                          </select>
-                        </div>
-                      </div> -->
-                    </div>
-                    <div class="row">
                       <div class="col-6 pr-1">
                         <div class="form-group">
                           <label for="formSignupFirstname" class="sr-only">First Name:</label>
                           <input [(ngModel)]="user.first" [ngModelOptions]="{standalone: true}" type="text" class="form-control myInput-elegant-3"
-                            id="formSignupFirstname" aria-describedby="" placeholder="First Name" [ngModelOptions]="{standalone: true}">
+                            id="formSignupFirstname" aria-describedby="" placeholder="First Name">
                         </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group">
                           <label for="formSignupLastname" class="sr-only">Last Name:</label>
-                          <input type="text" class="form-control myInput-elegant-3" id="formSignupLastname" aria-describedby="" placeholder="Last Name">
+                          <input [(ngModel)]="user.last" [ngModelOptions]="{standalone: true}" type="text" class="form-control myInput-elegant-3" id="formSignupLastname" aria-describedby="" placeholder="Last Name">
                         </div>
                       </div>
 
@@ -86,16 +75,8 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
-                          <label for="formSignupBirthday" class="sr-only">Birthday:</label>
-                          <input type="date" class="form-control myInput-elegant-3" id="formSignupBirthday" aria-describedby="" placeholder="Last Name">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
                           <label for="formAccountPhone" class="sr-only">Phone Number</label>
-                          <input type="number" value="" class="form-control myInput-elegant-2" id="formAccountPhone" placeholder="Phone Number">
+                          <input [(ngModel)]="user.phone" [ngModelOptions]="{standalone: true}" type="number" value="" class="form-control myInput-elegant-2" id="formAccountPhone" placeholder="Phone Number">
                         </div>
                       </div>
                     </div>
@@ -103,19 +84,19 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="formSignupEmail" class="sr-only">Email:</label>
-                          <input type="email" class="form-control myInput-elegant-3" id="formSignupEmail" placeholder="Email">
+                          <input [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" type="email" class="form-control myInput-elegant-3" id="formSignupEmail" placeholder="Email">
                         </div>
                       </div>
-                      <div class="col-12">
+                      <!-- <div class="col-12">
                         <div class="form-group">
                           <label for="formSignupPassword" class="sr-only">Password:</label>
                           <input type="password" class="form-control myInput-elegant-3" id="formSignupPassword" placeholder="Password">
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="row mt-2">
                       <div class="col-12 d-flex justify-content-center">
-                        <button type="submit" class="btn myBtn-fill mb-3">Update</button>
+                        <button type="submit" class="btn myBtn-fill mb-3" disabled>Update</button>
                       </div>
                     </div>
                   </div>
@@ -282,14 +263,11 @@
         <div class="tab-pane fade" id="tabMainCart" role="tabpanel" aria-labelledby="tabMainCartLabel">
           <div class="row d-flex flex-column align-items-center">
             <div class="col-7 col-sm-6 col-md-5 col-lg-3 text-center">
-              <img src="../../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd"
-                class="w-100 myImg-fit mb-2">
+              <!-- <img src="../../assets/img/thumbnail/illustration-cart.png" alt="IMAGE" title="Shopping cart, Credit to Henry Brown &  Co. Ltd"
+                class="w-100 myImg-fit mb-2"> -->
               <a href="" class="btn myBtn-fill" routerLink="/cart">Go to Cart</a>
             </div>
           </div>
-          <!-- <div class="row"> -->
-          <app-cart></app-cart>
-          <!-- </div> -->
         </div>
         <div class="tab-pane fade" id="tabMainOrder" role="tabpanel" aria-labelledby="tabMainOrderLabel">
           <nav>
@@ -314,10 +292,10 @@
                   <tbody>
                     <tr *ngFor="let order of orders">
                       <th scope="row">
-                        <a href="" target="_blank" routerLink="/order-detail">{{order._id}}</a>
+                        <a href="" routerLink="/order-detail/{{order._id}}">{{order._id}}</a>
                       </th>
                       <!-- <td>01-Jan-2018</td> -->
-                      <td>{{order.total}}</td>
+                      <td>{{order.total | currency:'VND'}}</td>
                       <!-- <td>Complete</td> -->
                     </tr>
                   </tbody>

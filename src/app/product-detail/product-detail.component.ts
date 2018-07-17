@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Genre } from '../view-models/genre';
 import { GenreService } from '../services/genre.service';
@@ -13,6 +13,7 @@ import { find } from 'rxjs/operators';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  componentTitle = 'Product Details';
   genres: Genre[];
   books: Book[];
   book: Book;
@@ -21,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
     private bookService: BookService,
     private cartService: CartService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) { }
 
@@ -62,4 +64,5 @@ export class ProductDetailComponent implements OnInit {
 
   //   }
   // }
+  
 }

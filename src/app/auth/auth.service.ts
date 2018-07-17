@@ -10,8 +10,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+    
+   }
 
   login(email: string, password: string) {
     return this.http.post<any>(this.loginUrl, { email: email, password: password })
@@ -23,7 +25,6 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('currentUser');
-    const id = 
     this.router.navigate(['/login']);
   }
 

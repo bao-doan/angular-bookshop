@@ -27,6 +27,9 @@ import { UserService } from './services/user.service';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppCustomModule } from './app-custom/app-custom.module';
+import { CardComponent } from './card/card.component';
+import { LoadingComponent } from './loading/loading.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { AppCustomModule } from './app-custom/app-custom.module';
     RegisterComponent,
     LoginComponent,
     LoginLayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CardComponent,
+    LoadingComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
@@ -64,9 +70,7 @@ import { AppCustomModule } from './app-custom/app-custom.module';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    },
-    // provider used to create fake backend
-    fakeBackendProvider
+    }
   ],
   bootstrap: [AppComponent]
 })

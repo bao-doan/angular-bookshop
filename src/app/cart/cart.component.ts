@@ -8,18 +8,18 @@ import { Book } from '../view-models/book';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  componentTitle = 'Shopping Cart';
+  inputQuantity: number = 1;
+  cart: Cart = JSON.parse(this.cartService.getStorage());
 
+  discount_input: string = '';
   constructor(public cartService: CartService) {
     this.cartService.cartSource$.subscribe(_ => this.cart = JSON.parse(_))
   }
 
   ngOnInit() {
   }
-  inputQuantity: number = 1;
-  cart: Cart = JSON.parse(this.cartService.getStorage());
-
-  discount_input: string = '';
-
+  
   removeItem(book: Book) {
     this.cartService.removeItem(book);
   }

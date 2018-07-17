@@ -1,11 +1,10 @@
-import { Component, OnInit, EventEmitter, Input, Output, HostListener } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { LoginService } from '../services/login.service';
-import { UserService } from '../services/user.service';
-import { User } from '../view-models/user';
+import { LoginService, UserService } from '../services'
+import { User, Login } from '../view-models';
 import { HeaderComponent } from '../header/header.component';
 import { Subscription } from 'rxjs';
 @Component({
@@ -15,17 +14,17 @@ import { Subscription } from 'rxjs';
 })
 
 export class LoginComponent implements OnInit {
-  // Properties for Login Form
-  loading: boolean = this.loginService.loading;
-  submitted: boolean = this.loginService.submitted;
-  returnUrl: string;
-  error: any = this.loginService.error;
+
+  componentTitle = 'Login';
   user: User = new User();
+  // Properties for Login Form
   loginShopForm: FormGroup;
-  // Properties for communicating
+  // Properties for login communicating
+  login: Login = this.loginService.loginObject;
+  status: boolean;
   // For avoiding ID conflict
   @Input() formId;
-  status: boolean;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -33,13 +32,13 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     public loginService: LoginService
   ) {
-    this.loginService.status$.subscribe(_ => {
-      this.status = _;
-    })
+    this.loginService.status$.subscribe(_ => { this.status = _ })
+    this.loginService.login$.subscribe(_ => { this.login = _ })
   }
   ngOnInit() {
     this.createLoginForm();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.login.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.loginService.annouceLogin(this.login);
   }
   createLoginForm() {
     this.loginShopForm = this.fb.group({
@@ -61,6 +60,8 @@ export class LoginComponent implements OnInit {
    }
  }
   onSubmit() {
-    this.loginService.onSubmit(this.loginShopForm, this.returnUrl);
+
+    this.loginService.onSubmit(this.loginShopForm, this.login.returnUrl);
+    // this.loginService.annouceLogin(this.login);
   }
 }

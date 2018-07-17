@@ -1,14 +1,13 @@
 <!-- Migrate -->
 <form [formGroup]="loginShopForm" (ngSubmit)="onSubmit()">
-    <div class="col-12">
-        This is app-login
-    </div>
     <div class="form-group mt-2">
         <label for="formLoginEmail" class="sr-only">Email address:</label>
         <input type="text" class="form-control text-truncate myInput-elegant-3" id="{{formId}}-formLoginEmail" aria-describedby="emailHelp"
             placeholder="Email address" formControlName="username" required>
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
+        <div *ngIf="login.submitted && f.username.errors">
+            <div *ngIf="f.username.errors.required" class="text-danger">
+                <small>Email is required</small>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -21,27 +20,33 @@
                 <i *ngIf="value" class="far fa-eye-slash"></i>
             </button>
         </div>
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="login.submitted && f.password.errors">
+            <div *ngIf="f.password.errors.required" class="text-danger">
+                <small>Password is required</small>
+            </div>
         </div>
-        <a href="" class="text-muted" target="_blank">
-            <small>I forgot my password.</small>
-        </a>
+
     </div>
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="{{formId}}-formLoginRemember">
         <label class="form-check-label text-muted" for="formLoginRemember">Remember login</label>
     </div>
     <div class="d-flex flex-column align-items-center mt-4">
-        <button type="submit" data-dismiss="modal" class="btn myBtn-fill" id="{{formId}}-loginButton">Log in</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        <button type="submit" class="btn myBtn-fill" id="{{formId}}-loginButton">Log in</button>
+        <img *ngIf="login.loading" class="mt-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
         />
-        <div *ngIf="error" class="text-danger">
-            <i class="icon-close"></i> Email or Password is incorrect</div>
+        <div *ngIf="login.submitted && login.error" class="text-danger mt-2">
+            <small><i class="icon-close"></i> Cannot login because: <b>{{login.error}}</b></small>
+        </div>
 
         <span class="mt-2 mb-2">
             <small class="text-muted">I don't have an account. </small>
             <a href="" class="myText-link" routerLink="/register">Register</a>
         </span>
+        <div>
+            <a href="" class="text-muted">
+                <small>I forgot my password.</small>
+            </a>
+        </div>
     </div>
 </form>

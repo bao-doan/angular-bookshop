@@ -1,0 +1,75 @@
+const mongoose = require('mongoose');
+const types = mongoose.Schema.Types;
+
+
+const orderSchema = mongoose.Schema({
+    _user: {
+        type: types.ObjectId,
+        ref: 'User'
+    },
+    books: [
+        {
+            _book: {
+                type : types.ObjectId,
+                ref: "Book"
+            },
+            quantity: {
+                type: Number,
+                require: true
+            },
+            price: {
+                type: Number,
+                require: true
+            }
+        }],
+    total: {
+        type: Number,
+        require: true
+    },
+    note: String
+});
+
+const Order = module.exports = mongoose.model('Order', orderSchema);
+
+// Add Orders
+module.exports.addOrder = (order,callback) => {
+        Order.findOneAndUpdate({_id:mongoose.Types.ObjectId()}, order, {
+            new: true,
+            upsert: true,
+            runValidators: true,
+            setDefaultsOnInsert: true,
+        })
+        .populate('books._book', 'title')
+        .populate('_user', 'name email avatarUrl')
+        .exec(callback);;
+
+    // Order.create(order)
+    //     .populate('books._book', 'title')
+    //     .populate('_user', 'name email avatarUrl')
+    //     .exec(callback);;
+}
+
+// Get Orders
+module.exports.getOrders = (callback, limit) => {
+    Order.find()
+        .limit(limit)
+        .populate('books._book', 'title')
+        .populate('_user', 'name email avatarUrl')
+        .exec(callback);
+}
+
+// Get Orders by Id
+module.exports.getOrderById = (id,callback) => {
+    Order.findById(id)
+        .populate('books._book', 'title')
+        .populate('_user', 'name email avatarUrl')
+        .exec(callback);
+}
+// Get Orders by UserId
+module.exports.getOrdersByUserId = (userId,callback) => {
+    Order.find({"_user": userId })
+        .populate('books._book', 'title')
+        .populate('_user', 'name email avatarUrl')
+        .exec(callback);
+}
+

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-layout.component.css']
 })
 export class LoginLayoutComponent implements OnInit {
+  componentTitle = 'Login';
   formId: string = 'login';
   constructor() { }
 

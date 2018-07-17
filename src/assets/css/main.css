@@ -4,3 +4,6 @@
 @import url('imports/animate.css');
 @import url('imports/media-display.css');
 
+#main {
+    @import url('imports/media-display.css');
+}

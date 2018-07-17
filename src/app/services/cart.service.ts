@@ -16,8 +16,8 @@ export class CartService {
   cartSource$ = this.cartSource.asObservable();
 
   // public discount_input: string = '';
-  public discount_code: string = 'WEDNESDAY';
-  public discount_percent: number = 10/100;
+  public discount_code: string = 'BLACK_FRIDAY';
+  public discount_percent: number = 30/100;
 
   constructor() { }
 
@@ -31,18 +31,15 @@ export class CartService {
   setStorage(): void {
     localStorage.setItem('currentCart', JSON.stringify(this.currentCart));
     this.cartSource.next(JSON.stringify(this.currentCart));
-    console.log('Da setStorage()');
   }
 
   // For Shoping Cart methods
   cartInit() {
     if (this.getStorage()) {
       this.currentCart = JSON.parse(this.getStorage());
-      console.log(`cartInit(): Da lay currentCart tu localStorage`);
     } else {
       this.currentCart = new Cart();
       localStorage.setItem('currentCart', JSON.stringify(this.currentCart));
-      console.log(`cartInit(): Da tao moi currentCart = ${JSON.stringify(this.currentCart)}`);
     }
   }
   removeCart() {
@@ -50,9 +47,10 @@ export class CartService {
       this.removeStorage();
       this.currentCart = new Cart();
       this.cartProduct = new Product();
-      console.log('removeCart(): Da remove currentCart')
+      this.countItemInCart();
+      this.calculateAll();
+      this.setStorage();
     } else {
-      console.log('removeCart(): Chua co currentCart');
     }
   }
   addItem(book: Book, inputQuantity: number) {
@@ -77,9 +75,7 @@ export class CartService {
     if (find_product) {
       this.currentCart.items[find_index].quantity = 0;
       currentCart.items = this.currentCart.items.filter((i) => i.quantity > 0);
-      console.log(`removeItem(): chon xoa ${book.title} co index = ${find_index}`)
     } else {
-      console.log(`removeItem(): cannot remove because this product is not in Cart!`)
     }
     this.currentCart = currentCart;
     this.countItemInCart();
@@ -92,7 +88,7 @@ export class CartService {
     let cart = this.currentCart; // For shorthand typing
 
     cart.total = this.setTotal();
-    cart.discount = cart.discount;
+    cart.discount = (JSON.parse(this.getStorage()).items.length==0)?0:cart.discount;
     cart.amount = cart.total - cart.discount;
     cart.shipping = cart.shipping;
     cart.payable = cart.total - cart.discount + cart.shipping; 

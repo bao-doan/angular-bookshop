@@ -17,7 +17,7 @@ import { AboutComponent } from '../about/about.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent },
   {path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   {path: 'register', component: RegisterComponent },
@@ -25,9 +25,9 @@ const routes: Routes = [
   {path: 'login', component: LoginLayoutComponent },
   {path: 'cart', component: CartComponent },
   {path: 'checkout', component: CheckoutComponent,canActivate: [AuthGuard] },
-  {path: 'order-detail', component: OrderDetailComponent, canActivate: [AuthGuard] },
   {path: 'product-list', component: ProductListComponent },
   {path: 'product-detail/:_id', component: ProductDetailComponent },
+  {path: 'order-detail/:_id', component: OrderDetailComponent, canActivate: [AuthGuard] },
   {path: 'contact', component: ContactComponent },
   {path: 'about', component: AboutComponent }
   
