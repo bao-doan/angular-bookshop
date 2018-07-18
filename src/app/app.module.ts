@@ -22,7 +22,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtInterceptor } from './_helpers';
-import { fakeBackendProvider } from './_helpers';
 import { UserService } from './services/user.service';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';

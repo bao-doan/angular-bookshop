@@ -33,7 +33,7 @@ export class AccountComponent implements OnInit {
   getOrder(): void {
     this.orderService.getOrders().subscribe(_ => {
       this.orders = _;
-      console.log(`AccountComp: getOrders() Da get ${_.length} orders`);
+      console.log(`AccountComponent: getOrders() Da get ${_.length} orders`);
     });
   }
 }

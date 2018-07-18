@@ -50,12 +50,12 @@ export class LoginService {
     this.isLoggedIn();
   }
   isLoggedIn(): void {
-    console.log(`LoginService: status$ = ${this.status$}`);
+    // console.log(`LoginService: status$ = ${this.status$}`);
     if (this.status$) {
-      console.log(`LoginService: Ready to login`);
+      // console.log(`LoginService: Ready to login`);
       this.onLogin();
     } else {
-      console.log(`LoginService: Cannot login`);
+      // console.log(`LoginService: Cannot login`);
     }
   }
   onLogin(): void {
@@ -65,9 +65,9 @@ export class LoginService {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(`status$: Da co Token = ${JSON.parse(localStorage.getItem('currentUser')).token}`);
+          // console.log(`status$: Da co Token = ${JSON.parse(localStorage.getItem('currentUser')).token}`);
           this.announceStatus(true);
-          console.log(`return URL = ${this.loginObject.returnUrl}`);
+          // console.log(`return URL = ${this.loginObject.returnUrl}`);
           this.router.navigate([this.loginObject.returnUrl]);
           this.loginObject.loading = false;
           this.loginObject.error = '';

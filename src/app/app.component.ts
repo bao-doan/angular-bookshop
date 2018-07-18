@@ -46,12 +46,10 @@ export class AppComponent implements OnInit {
     });
     // For get User if user has logged in
     this.loginService.status$.subscribe(_ => {
-      console.log(`App: constructor(): _ = ${_}`)
       if (_ !== undefined) {
         this.status = _;
         if (_ && !this.login.error) {
           this.getUser();
-          console.log(`App, constructor, run getUser. Error= ${this.login.error || 'No error'}`);
         }
       }
     })
@@ -71,10 +69,8 @@ export class AppComponent implements OnInit {
       this.status = true;
       this.loginService.announceStatus(this.status);
       this.getUser();
-      console.log('App, check, run getUser');
     } else {
       this.loginService.announceStatus(this.status);
-      console.log(`App onInit: loginStatus = ${this.status}`);
     }
   }
   onSelect(book: Book): void {
@@ -123,7 +119,6 @@ export class AppComponent implements OnInit {
       )
     } else {
       this.user = new User();
-      console.log(`AppComponent getUsers(): Chua Login`);
     }
 
   }
@@ -138,7 +133,7 @@ export class AppComponent implements OnInit {
     this.loginService.annouceLogin(this.login);
 
     this.userService.getUsers().subscribe(_ => this.user = _.user, error => this.user = new User());
-    alert(`AppComponent: onLogout() says status = ${this.status}`);
+    // alert(`AppComponent: onLogout() says status = ${this.status}`);
   }
   removeItem(book: Book) {
     this.cartService.removeItem(book);

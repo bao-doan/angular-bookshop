@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" (click)="openOverlay(4999)" (blur)="closeOverlay()" class="btn dropdown-toggle myBtn-icon myOutline text-dark"
+            <a href="#" class="btn dropdown-toggle myBtn-icon myOutline text-dark"
                 id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
                 <b *ngIf="cart.book_counted" [class.d-none]="!cart.book_counted" class="badge badge-danger">{{cart.book_counted}}</b>
@@ -108,7 +108,7 @@
     <!-- Collapse Search -->
     <div class="collapse navbar-collapse" id="collapseSearch">
         <div class="input-group position-relative">
-            <input [(ngModel)]="title" (focus)="openOverlay(1000)" (blur)="closeOverlay()" type="text" class="form-control myInput-elegant myOutline"
+            <input [(ngModel)]="title" (focus)="openOverlay('1000')" (blur)="closeOverlay()" type="text" class="form-control myInput-elegant myOutline"
                 placeholder="Find products..." aria-label="Recipient's username" aria-describedby="basic-addon2">
             <button *ngIf="title" (click)="onClearSearch()" class="myText-link-2 myIcon-inside" type="button">
                 <i class="fas fa-times"></i>

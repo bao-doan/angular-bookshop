@@ -59,19 +59,14 @@ export class ProductListComponent implements OnInit {
       pages = Math.floor(items / step) + 1;
     }
     this.pages = pages;
-    // console.log(`Books = ${this.books.length}`);
-    // console.log(`Step = ${this.step}`);
-    // console.log(`Pages = ${this.pages}`);
   }
   onPrintLabel(): void {
     this.pageArray = new Array(this.pages);
     for (let i = 0; i < this.pageArray.length; i++) {
       this.pageArray[i] = i + 1;
     }
-    // console.log(this.pageArray);
   }
   onShowItems(i: number): void {
-    // this.onShowAll();
     this.selectedPage = i;
     let a: number = this.step * i - this.step;
     let b: number
@@ -82,7 +77,6 @@ export class ProductListComponent implements OnInit {
     }
     this.books2 = this.books.slice(a, b);
     this.checkPluralHandler();
-    // console.log(`selectedPage: ${this.selectedPage}`);
   }
   onShowAll(): void {
     this.books2 = this.books;
@@ -90,32 +84,17 @@ export class ProductListComponent implements OnInit {
 
   }
   onShowOption(step: number): void {
-    // this.step = option;
     this.onCountPages(this.books, this.step);
     this.onPrintLabel();
     this.onShowItems(1);
   }
   onNextPage(selectedPage: number): void {
-    // if(selectedPage < this.pages) {
-
-    //   this.selectedPage = selectedPage + 1;
-    // } else {
-    //   this.selectedPage = selectedPage;
-    // }
     this.selectedPage = (selectedPage < this.pages) ? (this.selectedPage = selectedPage + 1) : (this.selectedPage = selectedPage);
     this.onShowItems(this.selectedPage);
-    // console.log(`Triggered "Next" ${this.selectedPage}/${this.pages}`);
   }
   onPrevPage(selectedPage: number): void {
-    // if(selectedPage > 1) {
-
-    //   this.selectedPage = selectedPage - 1;
-    // } else {
-    //   this.selectedPage = 1;
-    // }
     this.selectedPage = (selectedPage > 1) ? (this.selectedPage = selectedPage - 1) : (this.selectedPage = 1);
     this.onShowItems(this.selectedPage);
-    // console.log(`Triggered "Prev" ${this.selectedPage}/${this.pages}`);
   }
   checkPluralHandler(): void {
     this.checkPluralBooks = (this.books.length > 1) ? "items" : "item";
