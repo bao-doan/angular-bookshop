@@ -1,8 +1,0 @@
-.myAnimate-border-bottom {
-    border-bottom: 0px solid var(--myOrange);
-    transition: border-bottom ease 0.3;
-}
-.myAnimate-border-bottom:hover {
-    border-bottom-width: 2px;
-    transition: border-bottom ease 0.3;
-}

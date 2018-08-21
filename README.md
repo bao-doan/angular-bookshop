@@ -33,6 +33,7 @@ work 1.0.17 -
 work 1.0.18 - Save codes
 work 1.0.19 - Save codes, remove some logs & alert.
 work 1.0.20 - Trying to fix googlemap: remove googleapis script
+work 1.0.21 - no docs folder
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
