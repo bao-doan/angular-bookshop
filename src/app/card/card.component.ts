@@ -15,5 +15,4 @@ export class CardComponent implements OnInit {
   addItem(book: Book, number: number) {
     this.cartService.addItem(book, number);
   }
-
 }

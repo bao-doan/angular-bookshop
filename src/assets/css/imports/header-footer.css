@@ -532,3 +532,14 @@ body {
 .overlay-show {
     display: block;
 }
+
+.myCard-ellipsis {
+    display: block;
+    width: 100%; 
+    height: 2.5em;
+    overflow: hidden;
+    -webkit-text-overflow: ellipsis; 
+    -o-text-overflow: ellipsis; 
+    -moz-text-overflow: ellipsis; 
+    text-overflow: ellipsis; 
+}
