@@ -3,7 +3,7 @@ import { AuthService } from '../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { OrderService } from '../services/order.service';
 import { User } from '../view-models/user';
-import { Order } from '../view-models/order';
+import { Order, UserOrder } from '../view-models/order';
 
 @Component({
   selector: 'app-account',
@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   componentTitle = 'Account';
   user: User = new User();
   orders: Order[];
+  ordersFilter: Order[];
   constructor(
     private authService: AuthService, 
     private userService: UserService,

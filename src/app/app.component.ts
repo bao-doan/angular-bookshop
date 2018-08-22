@@ -113,6 +113,7 @@ export class AppComponent implements OnInit {
           this.loginService.annouceLogin(this.login);
         },
         error => {
+          this.user = new User();
           this.login.error = error.error;
           this.loginService.annouceLogin(this.login);
         }
@@ -133,6 +134,7 @@ export class AppComponent implements OnInit {
     this.loginService.annouceLogin(this.login);
 
     this.userService.getUsers().subscribe(_ => this.user = _.user, error => this.user = new User());
+    
     // alert(`AppComponent: onLogout() says status = ${this.status}`);
   }
   removeItem(book: Book) {

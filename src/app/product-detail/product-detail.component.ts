@@ -7,6 +7,9 @@ import { Book } from '../view-models/book';
 import { BookService } from '../services/book.service';
 import { CartService } from '../services/cart.service';
 import { find } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { ParamMap } from '@angular/router';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -17,6 +20,7 @@ export class ProductDetailComponent implements OnInit {
   genres: Genre[];
   books: Book[];
   book: Book;
+  book$: Observable<Book>;
   constructor(
     private genreService: GenreService,
     private bookService: BookService,
@@ -24,12 +28,14 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
-  ) { }
+  ) {   }
 
   ngOnInit() {
+    
     this.getGenres();
     this.getBooks();
     this.getBook();
+    this.getBook$();
   }
   getGenres(): void {
     this.genreService.getGenres().subscribe(_ => this.genres = _);
@@ -44,6 +50,12 @@ export class ProductDetailComponent implements OnInit {
         this.book = _;
         // this.showRelatedBook(_ , 3);
       });
+  }
+  getBook$(): void {
+    this.book$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.bookService.getBook(params.get('_id')))
+    );
   }
   inputQuantity: number = 1;
   addItem(book: Book) {

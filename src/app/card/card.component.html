@@ -1,6 +1,6 @@
 <div class="myCard-product">
   <div class="myCard-upper myCursor-pointer mb-2" title="Author:&#10;&#34;{{book.author}}&#34;">
-    <div class="myCard-upper-img">
+    <div class="myCard-upper-img myCard-ratio">
       <img class="card-img" src="{{book.images?.main}}" alt="product">
     </div>
     <div class="myCard-upper-overlay">
@@ -19,7 +19,7 @@
   </div>
   <div class="py-2">
     <h6 class="text-center text-small myCard-ellipsis myCursor-pointer mb-1" routerLink="/product-detail/{{book._id}}">
-      <a class="myText-link-2" routerLink="/product-detail/{{book._id}}">{{book.title}}</a>
+      <a class="myText-link-2" [routerLink]="['/product-detail', book._id]" title="{{book.title}}">{{book.title}}</a>
     </h6>
     <h6 class="text-center text-danger mb-1">
       {{book.sellingPrice | currency:'VND'}}

@@ -3,7 +3,7 @@
     <div class="row py-3 mb-2 bg-light">
         <!-- Advanced Carousel-->
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-            <div *ngIf="book" class="row">
+            <div *ngIf="book$ | async as book" class="row">
                 <div class="col-12 mb-2">
                     <div id="carouselProductIndicator" class="carousel slide myCarousel" data-ride="carousel">
                         <div class="carousel-inner myCarousel-img-view">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <!-- Add to Cart site  -->
-        <div *ngIf="book" class="col-12 col-sm-6 col-md-6 col-lg-8 mb-3">
+        <div *ngIf="book$ | async as book" class="col-12 col-sm-6 col-md-6 col-lg-8 mb-3">
             <p class="sr-only">Product</p>
             <h5>{{book.title}}</h5>
             <h6 class="text-muted">{{book.author}}</h6>
