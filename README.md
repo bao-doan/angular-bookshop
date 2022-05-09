@@ -29,3 +29,7 @@ Run as prod:
 ````
 ng serve --prod
 ````
+
+## Problem with starting
+
+Run `npm update`. Then `npm start` or `ng serve`
